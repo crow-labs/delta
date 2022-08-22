@@ -1,0 +1,13 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+
+message Poll {
+  string crowId = 1; 
+  string disputeId = 2; 
+  string verdictId = 3; 
+  repeated string voteIds = 4; 
+  
+}
+

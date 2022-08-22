@@ -1,0 +1,12 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+
+message MonoRebutal {
+  string rebuttalId = 1; 
+  string desc = 2; 
+  string evidence = 3; 
+  string defendant = 4;
+}
+

@@ -1,0 +1,231 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+import "escrow/buyer_mono_crow.proto";
+import "escrow/seller_mono_crow.proto";
+import "escrow/mono_crow.proto";
+import "escrow/mono_dispute.proto";
+import "escrow/mono_rebutal.proto";
+import "escrow/verdict.proto";
+// this line is used by starport scaffolding # proto/tx/import
+import "escrow/vote.proto";
+import "cosmos/base/v1beta1/coin.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc CreateBuyerMonoCrow(MsgCreateBuyerMonoCrow) returns (MsgCreateBuyerMonoCrowResponse);
+  rpc UpdateBuyerMonoCrow(MsgUpdateBuyerMonoCrow) returns (MsgUpdateBuyerMonoCrowResponse);
+  rpc DeleteBuyerMonoCrow(MsgDeleteBuyerMonoCrow) returns (MsgDeleteBuyerMonoCrowResponse);
+  rpc CreateSellerMonoCrow(MsgCreateSellerMonoCrow) returns (MsgCreateSellerMonoCrowResponse);
+  rpc UpdateSellerMonoCrow(MsgUpdateSellerMonoCrow) returns (MsgUpdateSellerMonoCrowResponse);
+  rpc DeleteSellerMonoCrow(MsgDeleteSellerMonoCrow) returns (MsgDeleteSellerMonoCrowResponse);
+  rpc CreateMonoCrow(MsgCreateMonoCrow) returns (MsgCreateMonoCrowResponse);
+  rpc UpdateMonoCrow(MsgUpdateMonoCrow) returns (MsgUpdateMonoCrowResponse);
+  rpc DeleteMonoCrow(MsgDeleteMonoCrow) returns (MsgDeleteMonoCrowResponse);
+  rpc CreateMonoDispute(MsgCreateMonoDispute) returns (MsgCreateMonoDisputeResponse);
+  rpc UpdateMonoDispute(MsgUpdateMonoDispute) returns (MsgUpdateMonoDisputeResponse);
+  rpc DeleteMonoDispute(MsgDeleteMonoDispute) returns (MsgDeleteMonoDisputeResponse);
+  rpc CreateMonoRebutal(MsgCreateMonoRebutal) returns (MsgCreateMonoRebutalResponse);
+  rpc UpdateMonoRebutal(MsgUpdateMonoRebutal) returns (MsgUpdateMonoRebutalResponse);
+  rpc DeleteMonoRebutal(MsgDeleteMonoRebutal) returns (MsgDeleteMonoRebutalResponse);
+  rpc CreateVote(MsgCreateVote) returns (MsgCreateVoteResponse);
+  rpc UpdateVote(MsgUpdateVote) returns (MsgUpdateVoteResponse);
+  rpc DeleteVote(MsgDeleteVote) returns (MsgDeleteVoteResponse);
+  rpc CreateVerdict(MsgCreateVerdict) returns (MsgCreateVerdictResponse);
+  rpc UpdateVerdict(MsgUpdateVerdict) returns (MsgUpdateVerdictResponse);
+  rpc DeleteVerdict(MsgDeleteVerdict) returns (MsgDeleteVerdictResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateBuyerMonoCrow {
+  string buyer = 1;
+  string buyerCrowId = 2;
+
+  repeated cosmos.base.v1beta1.Coin deposit = 3 [(gogoproto.nullable) = false];
+  repeated cosmos.base.v1beta1.Coin collateral = 4 [(gogoproto.nullable) = false];
+  string status = 5;
+}
+message MsgCreateBuyerMonoCrowResponse {}
+
+message MsgUpdateBuyerMonoCrow {
+  string buyer = 1;
+  string buyerCrowId = 2;
+
+  repeated cosmos.base.v1beta1.Coin deposit = 3 [(gogoproto.nullable) = false];
+  repeated cosmos.base.v1beta1.Coin collateral = 4 [(gogoproto.nullable) = false];
+  string status = 5;
+}
+message MsgUpdateBuyerMonoCrowResponse {}
+
+message MsgDeleteBuyerMonoCrow {
+  string buyer = 1;
+  string buyerCrowId = 2;
+}
+message MsgDeleteBuyerMonoCrowResponse {}
+
+message MsgCreateSellerMonoCrow {
+  string seller = 1;
+  string sellerCrowId = 2;
+
+  repeated cosmos.base.v1beta1.Coin collateral = 3 [(gogoproto.nullable) = false];
+  string status = 4;
+}
+message MsgCreateSellerMonoCrowResponse {}
+
+message MsgUpdateSellerMonoCrow {
+  string seller = 1;
+  string sellerCrowId = 2;
+
+  repeated cosmos.base.v1beta1.Coin collateral = 3 [(gogoproto.nullable) = false];
+  string status = 4;
+}
+message MsgUpdateSellerMonoCrowResponse {}
+
+message MsgDeleteSellerMonoCrow {
+  string seller = 1;
+  string sellerCrowId = 2;
+}
+message MsgDeleteSellerMonoCrowResponse {}
+
+message MsgCreateMonoCrow {
+  string seller = 1;
+  string crowId = 2;
+
+  string whitelistId = 3;
+  string sellerCrowId = 4;
+  string buyerCrowId = 5;
+  repeated string disputeId = 6;
+  repeated string timeout = 7;
+  string status = 8;
+}
+message MsgCreateMonoCrowResponse {}
+
+message MsgUpdateMonoCrow {
+  string seller = 1;
+  string crowId = 2;
+
+  string whitelistId = 3;
+  string sellerCrowId = 4;
+  string buyerCrowId = 5;
+  repeated string disputeId = 6;
+  repeated string timeout = 7;
+  string status = 8;
+}
+message MsgUpdateMonoCrowResponse {}
+
+message MsgDeleteMonoCrow {
+  string seller = 1;
+  string crowId = 2;
+}
+message MsgDeleteMonoCrowResponse {}
+
+message MsgCreateMonoDispute {
+  string plaintiff = 1;
+  string disputeId = 2;
+
+  string title = 3;
+  string desc = 4;
+  string evidence = 5;
+}
+message MsgCreateMonoDisputeResponse {}
+
+message MsgUpdateMonoDispute {
+  string plaintiff = 1;
+  string disputeId = 2;
+
+  string title = 3;
+  string desc = 4;
+  string evidence = 5;
+}
+message MsgUpdateMonoDisputeResponse {}
+
+message MsgDeleteMonoDispute {
+  string plaintiff = 1;
+  string disputeId = 2;
+}
+message MsgDeleteMonoDisputeResponse {}
+
+message MsgCreateMonoRebutal {
+  string defendant = 1;
+  string rebuttalId = 2;
+
+  string desc = 3;
+  string evidence = 4;
+}
+message MsgCreateMonoRebutalResponse {}
+
+message MsgUpdateMonoRebutal {
+  string defendant = 1;
+  string rebuttalId = 2;
+
+  string desc = 3;
+  string evidence = 4;
+}
+message MsgUpdateMonoRebutalResponse {}
+
+message MsgDeleteMonoRebutal {
+  string defendant = 1;
+  string rebuttalId = 2;
+}
+message MsgDeleteMonoRebutalResponse {}
+
+message MsgCreateVote {
+  string voter = 1;
+  string voteId = 2;
+
+  bool buyerGuilty = 3;
+  bool sellerGuilty = 4;
+  repeated cosmos.base.v1beta1.Coin refundToBuyer = 5 [(gogoproto.nullable) = false];
+  repeated cosmos.base.v1beta1.Coin sendToSeller = 6 [(gogoproto.nullable) = false];
+  string buyerPunishment = 7;
+  string sellerPunishment = 8;
+}
+message MsgCreateVoteResponse {}
+
+message MsgUpdateVote {
+  string voter = 1;
+  string voteId = 2;
+
+  bool buyerGuilty = 3;
+  bool sellerGuilty = 4;
+  repeated cosmos.base.v1beta1.Coin refundToBuyer = 5 [(gogoproto.nullable) = false];
+  repeated cosmos.base.v1beta1.Coin sendToSeller = 6 [(gogoproto.nullable) = false];
+  string buyerPunishment = 7;
+  string sellerPunishment = 8;
+}
+message MsgUpdateVoteResponse {}
+
+message MsgDeleteVote {
+  string voter = 1;
+  string voteId = 2;
+}
+message MsgDeleteVoteResponse {}
+
+message MsgCreateVerdict {
+  string creator = 1;
+  string verdictId = 2;
+
+  repeated string voteIds = 3;
+  Vote resultingVote = 4;
+}
+message MsgCreateVerdictResponse {}
+
+message MsgUpdateVerdict {
+  string creator = 1;
+  string verdictId = 2;
+
+  repeated string voteIds = 3;
+  Vote resultingVote = 4;
+}
+message MsgUpdateVerdictResponse {}
+
+message MsgDeleteVerdict {
+  string creator = 1;
+  string verdictId = 2;
+}
+message MsgDeleteVerdictResponse {}
+
+// this line is used by starport scaffolding # proto/tx/message

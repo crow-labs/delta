@@ -1,0 +1,13 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+import "escrow/vote.proto"; 
+
+message Verdict {
+  string verdictId = 1; 
+  repeated string voteIds = 2; 
+  Vote resultingVote = 3; 
+  string creator = 4;
+}
+

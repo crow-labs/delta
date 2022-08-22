@@ -1,0 +1,12 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+
+message Dispute {
+  string crowId = 1; 
+  string plaintiffId = 2; 
+  string disputeId = 3; 
+  
+}
+

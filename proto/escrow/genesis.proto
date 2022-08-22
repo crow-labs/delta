@@ -1,0 +1,43 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+import "gogoproto/gogo.proto";
+import "escrow/params.proto";
+import "escrow/buyer_crow.proto";
+import "escrow/buyer_mono_crow.proto";
+import "escrow/seller_crow.proto";
+import "escrow/seller_mono_crow.proto";
+import "escrow/crow.proto";
+import "escrow/mono_crow.proto";
+import "escrow/dispute.proto";
+import "escrow/mono_dispute.proto";
+import "escrow/rebuttal.proto";
+import "escrow/mono_rebutal.proto";
+import "escrow/ballot.proto";
+import "escrow/vote.proto";
+import "escrow/poll.proto";
+import "escrow/verdict.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+
+// GenesisState defines the escrow module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  string port_id = 2;
+  repeated BuyerCrow buyerCrowList = 3 [(gogoproto.nullable) = false];
+  repeated BuyerMonoCrow buyerMonoCrowList = 4 [(gogoproto.nullable) = false];
+  repeated SellerCrow sellerCrowList = 5 [(gogoproto.nullable) = false];
+  repeated SellerMonoCrow sellerMonoCrowList = 6 [(gogoproto.nullable) = false];
+  repeated Crow crowList = 7 [(gogoproto.nullable) = false];
+  repeated MonoCrow monoCrowList = 8 [(gogoproto.nullable) = false];
+  repeated Dispute disputeList = 9 [(gogoproto.nullable) = false];
+  repeated MonoDispute monoDisputeList = 10 [(gogoproto.nullable) = false];
+  repeated Rebuttal rebuttalList = 11 [(gogoproto.nullable) = false];
+  repeated MonoRebutal monoRebutalList = 12 [(gogoproto.nullable) = false];
+  repeated Ballot ballotList = 13 [(gogoproto.nullable) = false];
+  repeated Vote voteList = 14 [(gogoproto.nullable) = false];
+  repeated Poll pollList = 15 [(gogoproto.nullable) = false];
+  repeated Verdict verdictList = 16 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}

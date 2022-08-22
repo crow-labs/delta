@@ -20122,6 +20122,2777 @@ paths:
           format: int64
       tags:
         - Query
+  /crow-labs/delta/escrow/ballot:
+    get:
+      summary: Queries a list of Ballot items.
+      operationId: CrowlabsDeltaEscrowBallotAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ballot:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    disputeId:
+                      type: string
+                    voterId:
+                      type: string
+                    voteId:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/ballot/{disputeId}/{voterId}':
+    get:
+      summary: Queries a Ballot by index.
+      operationId: CrowlabsDeltaEscrowBallot
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              ballot:
+                type: object
+                properties:
+                  disputeId:
+                    type: string
+                  voterId:
+                    type: string
+                  voteId:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: disputeId
+          in: path
+          required: true
+          type: string
+        - name: voterId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/buyer_crow:
+    get:
+      summary: Queries a list of BuyerCrow items.
+      operationId: CrowlabsDeltaEscrowBuyerCrowAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              buyerCrow:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    crowId:
+                      type: string
+                    buyerId:
+                      type: string
+                    buyerCrowId:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/buyer_crow/{crowId}/{buyerId}':
+    get:
+      summary: Queries a BuyerCrow by index.
+      operationId: CrowlabsDeltaEscrowBuyerCrow
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              buyerCrow:
+                type: object
+                properties:
+                  crowId:
+                    type: string
+                  buyerId:
+                    type: string
+                  buyerCrowId:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: crowId
+          in: path
+          required: true
+          type: string
+        - name: buyerId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/buyer_mono_crow:
+    get:
+      summary: Queries a list of BuyerMonoCrow items.
+      operationId: CrowlabsDeltaEscrowBuyerMonoCrowAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              buyerMonoCrow:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    buyerCrowId:
+                      type: string
+                    deposit:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          denom:
+                            type: string
+                          amount:
+                            type: string
+                        description: >-
+                          Coin defines a token with a denomination and an
+                          amount.
+
+
+                          NOTE: The amount field is an Int which implements the
+                          custom method
+
+                          signatures required by gogoproto.
+                    collateral:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          denom:
+                            type: string
+                          amount:
+                            type: string
+                        description: >-
+                          Coin defines a token with a denomination and an
+                          amount.
+
+
+                          NOTE: The amount field is an Int which implements the
+                          custom method
+
+                          signatures required by gogoproto.
+                    status:
+                      type: string
+                    buyer:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/buyer_mono_crow/{buyerCrowId}':
+    get:
+      summary: Queries a BuyerMonoCrow by index.
+      operationId: CrowlabsDeltaEscrowBuyerMonoCrow
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              buyerMonoCrow:
+                type: object
+                properties:
+                  buyerCrowId:
+                    type: string
+                  deposit:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                  collateral:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                  status:
+                    type: string
+                  buyer:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: buyerCrowId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/crow:
+    get:
+      summary: Queries a list of Crow items.
+      operationId: CrowlabsDeltaEscrowCrowAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              crow:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    orderId:
+                      type: string
+                    listingId:
+                      type: string
+                    crowId:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/crow/{orderId}/{listingId}':
+    get:
+      summary: Queries a Crow by index.
+      operationId: CrowlabsDeltaEscrowCrow
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              crow:
+                type: object
+                properties:
+                  orderId:
+                    type: string
+                  listingId:
+                    type: string
+                  crowId:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          type: string
+        - name: listingId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/dispute:
+    get:
+      summary: Queries a list of Dispute items.
+      operationId: CrowlabsDeltaEscrowDisputeAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              dispute:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    crowId:
+                      type: string
+                    plaintiffId:
+                      type: string
+                    disputeId:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/dispute/{crowId}/{plaintiffId}':
+    get:
+      summary: Queries a Dispute by index.
+      operationId: CrowlabsDeltaEscrowDispute
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              dispute:
+                type: object
+                properties:
+                  crowId:
+                    type: string
+                  plaintiffId:
+                    type: string
+                  disputeId:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: crowId
+          in: path
+          required: true
+          type: string
+        - name: plaintiffId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/mono_crow:
+    get:
+      summary: Queries a list of MonoCrow items.
+      operationId: CrowlabsDeltaEscrowMonoCrowAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              monoCrow:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    crowId:
+                      type: string
+                    whitelistId:
+                      type: string
+                    sellerCrowId:
+                      type: string
+                    buyerCrowId:
+                      type: string
+                    disputeId:
+                      type: array
+                      items:
+                        type: string
+                    timeout:
+                      type: array
+                      items:
+                        type: string
+                    status:
+                      type: string
+                    seller:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/mono_crow/{crowId}':
+    get:
+      summary: Queries a MonoCrow by index.
+      operationId: CrowlabsDeltaEscrowMonoCrow
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              monoCrow:
+                type: object
+                properties:
+                  crowId:
+                    type: string
+                  whitelistId:
+                    type: string
+                  sellerCrowId:
+                    type: string
+                  buyerCrowId:
+                    type: string
+                  disputeId:
+                    type: array
+                    items:
+                      type: string
+                  timeout:
+                    type: array
+                    items:
+                      type: string
+                  status:
+                    type: string
+                  seller:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: crowId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/mono_dispute:
+    get:
+      summary: Queries a list of MonoDispute items.
+      operationId: CrowlabsDeltaEscrowMonoDisputeAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              monoDispute:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    disputeId:
+                      type: string
+                    title:
+                      type: string
+                    desc:
+                      type: string
+                    evidence:
+                      type: string
+                    plaintiff:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/mono_dispute/{disputeId}':
+    get:
+      summary: Queries a MonoDispute by index.
+      operationId: CrowlabsDeltaEscrowMonoDispute
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              monoDispute:
+                type: object
+                properties:
+                  disputeId:
+                    type: string
+                  title:
+                    type: string
+                  desc:
+                    type: string
+                  evidence:
+                    type: string
+                  plaintiff:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: disputeId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/mono_rebutal:
+    get:
+      summary: Queries a list of MonoRebutal items.
+      operationId: CrowlabsDeltaEscrowMonoRebutalAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              monoRebutal:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rebuttalId:
+                      type: string
+                    desc:
+                      type: string
+                    evidence:
+                      type: string
+                    defendant:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/mono_rebutal/{rebuttalId}':
+    get:
+      summary: Queries a MonoRebutal by index.
+      operationId: CrowlabsDeltaEscrowMonoRebutal
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              monoRebutal:
+                type: object
+                properties:
+                  rebuttalId:
+                    type: string
+                  desc:
+                    type: string
+                  evidence:
+                    type: string
+                  defendant:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: rebuttalId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: CrowlabsDeltaEscrowParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /crow-labs/delta/escrow/poll:
+    get:
+      summary: Queries a list of Poll items.
+      operationId: CrowlabsDeltaEscrowPollAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              poll:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    crowId:
+                      type: string
+                    disputeId:
+                      type: string
+                    verdictId:
+                      type: string
+                    voteIds:
+                      type: array
+                      items:
+                        type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/poll/{crowId}/{disputeId}':
+    get:
+      summary: Queries a Poll by index.
+      operationId: CrowlabsDeltaEscrowPoll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              poll:
+                type: object
+                properties:
+                  crowId:
+                    type: string
+                  disputeId:
+                    type: string
+                  verdictId:
+                    type: string
+                  voteIds:
+                    type: array
+                    items:
+                      type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: crowId
+          in: path
+          required: true
+          type: string
+        - name: disputeId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/rebuttal:
+    get:
+      summary: Queries a list of Rebuttal items.
+      operationId: CrowlabsDeltaEscrowRebuttalAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              rebuttal:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    disputeId:
+                      type: string
+                    defendantId:
+                      type: string
+                    rebuttalId:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/rebuttal/{disputeId}/{defendantId}':
+    get:
+      summary: Queries a Rebuttal by index.
+      operationId: CrowlabsDeltaEscrowRebuttal
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              rebuttal:
+                type: object
+                properties:
+                  disputeId:
+                    type: string
+                  defendantId:
+                    type: string
+                  rebuttalId:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: disputeId
+          in: path
+          required: true
+          type: string
+        - name: defendantId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/seller_crow:
+    get:
+      summary: Queries a list of SellerCrow items.
+      operationId: CrowlabsDeltaEscrowSellerCrowAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              sellerCrow:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    crowId:
+                      type: string
+                    sellerId:
+                      type: string
+                    sellerCrowId:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/seller_crow/{crowId}/{sellerId}':
+    get:
+      summary: Queries a SellerCrow by index.
+      operationId: CrowlabsDeltaEscrowSellerCrow
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              sellerCrow:
+                type: object
+                properties:
+                  crowId:
+                    type: string
+                  sellerId:
+                    type: string
+                  sellerCrowId:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: crowId
+          in: path
+          required: true
+          type: string
+        - name: sellerId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/seller_mono_crow:
+    get:
+      summary: Queries a list of SellerMonoCrow items.
+      operationId: CrowlabsDeltaEscrowSellerMonoCrowAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              sellerMonoCrow:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sellerCrowId:
+                      type: string
+                    collateral:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          denom:
+                            type: string
+                          amount:
+                            type: string
+                        description: >-
+                          Coin defines a token with a denomination and an
+                          amount.
+
+
+                          NOTE: The amount field is an Int which implements the
+                          custom method
+
+                          signatures required by gogoproto.
+                    status:
+                      type: string
+                    seller:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/seller_mono_crow/{sellerCrowId}':
+    get:
+      summary: Queries a SellerMonoCrow by index.
+      operationId: CrowlabsDeltaEscrowSellerMonoCrow
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              sellerMonoCrow:
+                type: object
+                properties:
+                  sellerCrowId:
+                    type: string
+                  collateral:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                  status:
+                    type: string
+                  seller:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: sellerCrowId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/verdict:
+    get:
+      summary: Queries a list of Verdict items.
+      operationId: CrowlabsDeltaEscrowVerdictAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              verdict:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    verdictId:
+                      type: string
+                    voteIds:
+                      type: array
+                      items:
+                        type: string
+                    resultingVote:
+                      type: object
+                      properties:
+                        voteId:
+                          type: string
+                        buyerGuilty:
+                          type: boolean
+                        sellerGuilty:
+                          type: boolean
+                        refundToBuyer:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              denom:
+                                type: string
+                              amount:
+                                type: string
+                            description: >-
+                              Coin defines a token with a denomination and an
+                              amount.
+
+
+                              NOTE: The amount field is an Int which implements
+                              the custom method
+
+                              signatures required by gogoproto.
+                        sendToSeller:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              denom:
+                                type: string
+                              amount:
+                                type: string
+                            description: >-
+                              Coin defines a token with a denomination and an
+                              amount.
+
+
+                              NOTE: The amount field is an Int which implements
+                              the custom method
+
+                              signatures required by gogoproto.
+                        buyerPunishment:
+                          type: string
+                        sellerPunishment:
+                          type: string
+                        voter:
+                          type: string
+                    creator:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/verdict/{verdictId}':
+    get:
+      summary: Queries a Verdict by index.
+      operationId: CrowlabsDeltaEscrowVerdict
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              verdict:
+                type: object
+                properties:
+                  verdictId:
+                    type: string
+                  voteIds:
+                    type: array
+                    items:
+                      type: string
+                  resultingVote:
+                    type: object
+                    properties:
+                      voteId:
+                        type: string
+                      buyerGuilty:
+                        type: boolean
+                      sellerGuilty:
+                        type: boolean
+                      refundToBuyer:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            denom:
+                              type: string
+                            amount:
+                              type: string
+                          description: >-
+                            Coin defines a token with a denomination and an
+                            amount.
+
+
+                            NOTE: The amount field is an Int which implements
+                            the custom method
+
+                            signatures required by gogoproto.
+                      sendToSeller:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            denom:
+                              type: string
+                            amount:
+                              type: string
+                          description: >-
+                            Coin defines a token with a denomination and an
+                            amount.
+
+
+                            NOTE: The amount field is an Int which implements
+                            the custom method
+
+                            signatures required by gogoproto.
+                      buyerPunishment:
+                        type: string
+                      sellerPunishment:
+                        type: string
+                      voter:
+                        type: string
+                  creator:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: verdictId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /crow-labs/delta/escrow/vote:
+    get:
+      summary: Queries a list of Vote items.
+      operationId: CrowlabsDeltaEscrowVoteAll
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              vote:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    voteId:
+                      type: string
+                    buyerGuilty:
+                      type: boolean
+                    sellerGuilty:
+                      type: boolean
+                    refundToBuyer:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          denom:
+                            type: string
+                          amount:
+                            type: string
+                        description: >-
+                          Coin defines a token with a denomination and an
+                          amount.
+
+
+                          NOTE: The amount field is an Int which implements the
+                          custom method
+
+                          signatures required by gogoproto.
+                    sendToSeller:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          denom:
+                            type: string
+                          amount:
+                            type: string
+                        description: >-
+                          Coin defines a token with a denomination and an
+                          amount.
+
+
+                          NOTE: The amount field is an Int which implements the
+                          custom method
+
+                          signatures required by gogoproto.
+                    buyerPunishment:
+                      type: string
+                    sellerPunishment:
+                      type: string
+                    voter:
+                      type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                    title: |-
+                      next_key is the key to be passed to PageRequest.key to
+                      query the next page most efficiently
+                  total:
+                    type: string
+                    format: uint64
+                    title: >-
+                      total is total number of results available if
+                      PageRequest.count_total
+
+                      was set, its value is undefined otherwise
+                description: >-
+                  PageResponse is to be embedded in gRPC response messages where
+                  the
+
+                  corresponding request message has used PageRequest.
+
+                   message SomeResponse {
+                           repeated Bar results = 1;
+                           PageResponse page = 2;
+                   }
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: pagination.key
+          description: |-
+            key is a value returned in PageResponse.next_key to begin
+            querying the next page most efficiently. Only one of offset or key
+            should be set.
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          description: >-
+            offset is a numeric offset that can be used when key is unavailable.
+
+            It is less efficient than using key. Only one of offset or key
+            should
+
+            be set.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          description: >-
+            limit is the total number of results to be returned in the result
+            page.
+
+            If left empty it will default to a value to be set by each app.
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          description: >-
+            count_total is set to true  to indicate that the result set should
+            include
+
+            a count of the total number of items available for pagination in
+            UIs.
+
+            count_total is only respected when offset is used. It is ignored
+            when key
+
+            is set.
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          description: >-
+            reverse is set to true if results are to be returned in the
+            descending order.
+
+
+            Since: cosmos-sdk 0.43
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
+  '/crow-labs/delta/escrow/vote/{voteId}':
+    get:
+      summary: Queries a Vote by index.
+      operationId: CrowlabsDeltaEscrowVote
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              vote:
+                type: object
+                properties:
+                  voteId:
+                    type: string
+                  buyerGuilty:
+                    type: boolean
+                  sellerGuilty:
+                    type: boolean
+                  refundToBuyer:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                  sendToSeller:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
+
+
+                        NOTE: The amount field is an Int which implements the
+                        custom method
+
+                        signatures required by gogoproto.
+                  buyerPunishment:
+                    type: string
+                  sellerPunishment:
+                    type: string
+                  voter:
+                    type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: voteId
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /crow-labs/delta/market/listing:
     get:
       summary: Queries a list of Listing items.
@@ -49489,6 +52260,1381 @@ definitions:
     description: >-
       MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount
       response type.
+  crowlabs.delta.escrow.Ballot:
+    type: object
+    properties:
+      disputeId:
+        type: string
+      voterId:
+        type: string
+      voteId:
+        type: string
+  crowlabs.delta.escrow.BuyerCrow:
+    type: object
+    properties:
+      crowId:
+        type: string
+      buyerId:
+        type: string
+      buyerCrowId:
+        type: string
+  crowlabs.delta.escrow.BuyerMonoCrow:
+    type: object
+    properties:
+      buyerCrowId:
+        type: string
+      deposit:
+        type: array
+        items:
+          type: object
+          properties:
+            denom:
+              type: string
+            amount:
+              type: string
+          description: |-
+            Coin defines a token with a denomination and an amount.
+
+            NOTE: The amount field is an Int which implements the custom method
+            signatures required by gogoproto.
+      collateral:
+        type: array
+        items:
+          type: object
+          properties:
+            denom:
+              type: string
+            amount:
+              type: string
+          description: |-
+            Coin defines a token with a denomination and an amount.
+
+            NOTE: The amount field is an Int which implements the custom method
+            signatures required by gogoproto.
+      status:
+        type: string
+      buyer:
+        type: string
+  crowlabs.delta.escrow.Crow:
+    type: object
+    properties:
+      orderId:
+        type: string
+      listingId:
+        type: string
+      crowId:
+        type: string
+  crowlabs.delta.escrow.Dispute:
+    type: object
+    properties:
+      crowId:
+        type: string
+      plaintiffId:
+        type: string
+      disputeId:
+        type: string
+  crowlabs.delta.escrow.MonoCrow:
+    type: object
+    properties:
+      crowId:
+        type: string
+      whitelistId:
+        type: string
+      sellerCrowId:
+        type: string
+      buyerCrowId:
+        type: string
+      disputeId:
+        type: array
+        items:
+          type: string
+      timeout:
+        type: array
+        items:
+          type: string
+      status:
+        type: string
+      seller:
+        type: string
+  crowlabs.delta.escrow.MonoDispute:
+    type: object
+    properties:
+      disputeId:
+        type: string
+      title:
+        type: string
+      desc:
+        type: string
+      evidence:
+        type: string
+      plaintiff:
+        type: string
+  crowlabs.delta.escrow.MonoRebutal:
+    type: object
+    properties:
+      rebuttalId:
+        type: string
+      desc:
+        type: string
+      evidence:
+        type: string
+      defendant:
+        type: string
+  crowlabs.delta.escrow.MsgCreateBuyerMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgCreateMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgCreateMonoDisputeResponse:
+    type: object
+  crowlabs.delta.escrow.MsgCreateMonoRebutalResponse:
+    type: object
+  crowlabs.delta.escrow.MsgCreateSellerMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgCreateVerdictResponse:
+    type: object
+  crowlabs.delta.escrow.MsgCreateVoteResponse:
+    type: object
+  crowlabs.delta.escrow.MsgDeleteBuyerMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgDeleteMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgDeleteMonoDisputeResponse:
+    type: object
+  crowlabs.delta.escrow.MsgDeleteMonoRebutalResponse:
+    type: object
+  crowlabs.delta.escrow.MsgDeleteSellerMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgDeleteVerdictResponse:
+    type: object
+  crowlabs.delta.escrow.MsgDeleteVoteResponse:
+    type: object
+  crowlabs.delta.escrow.MsgUpdateBuyerMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgUpdateMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgUpdateMonoDisputeResponse:
+    type: object
+  crowlabs.delta.escrow.MsgUpdateMonoRebutalResponse:
+    type: object
+  crowlabs.delta.escrow.MsgUpdateSellerMonoCrowResponse:
+    type: object
+  crowlabs.delta.escrow.MsgUpdateVerdictResponse:
+    type: object
+  crowlabs.delta.escrow.MsgUpdateVoteResponse:
+    type: object
+  crowlabs.delta.escrow.Params:
+    type: object
+    description: Params defines the parameters for the module.
+  crowlabs.delta.escrow.Poll:
+    type: object
+    properties:
+      crowId:
+        type: string
+      disputeId:
+        type: string
+      verdictId:
+        type: string
+      voteIds:
+        type: array
+        items:
+          type: string
+  crowlabs.delta.escrow.QueryAllBallotResponse:
+    type: object
+    properties:
+      ballot:
+        type: array
+        items:
+          type: object
+          properties:
+            disputeId:
+              type: string
+            voterId:
+              type: string
+            voteId:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllBuyerCrowResponse:
+    type: object
+    properties:
+      buyerCrow:
+        type: array
+        items:
+          type: object
+          properties:
+            crowId:
+              type: string
+            buyerId:
+              type: string
+            buyerCrowId:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllBuyerMonoCrowResponse:
+    type: object
+    properties:
+      buyerMonoCrow:
+        type: array
+        items:
+          type: object
+          properties:
+            buyerCrowId:
+              type: string
+            deposit:
+              type: array
+              items:
+                type: object
+                properties:
+                  denom:
+                    type: string
+                  amount:
+                    type: string
+                description: >-
+                  Coin defines a token with a denomination and an amount.
+
+
+                  NOTE: The amount field is an Int which implements the custom
+                  method
+
+                  signatures required by gogoproto.
+            collateral:
+              type: array
+              items:
+                type: object
+                properties:
+                  denom:
+                    type: string
+                  amount:
+                    type: string
+                description: >-
+                  Coin defines a token with a denomination and an amount.
+
+
+                  NOTE: The amount field is an Int which implements the custom
+                  method
+
+                  signatures required by gogoproto.
+            status:
+              type: string
+            buyer:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllCrowResponse:
+    type: object
+    properties:
+      crow:
+        type: array
+        items:
+          type: object
+          properties:
+            orderId:
+              type: string
+            listingId:
+              type: string
+            crowId:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllDisputeResponse:
+    type: object
+    properties:
+      dispute:
+        type: array
+        items:
+          type: object
+          properties:
+            crowId:
+              type: string
+            plaintiffId:
+              type: string
+            disputeId:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllMonoCrowResponse:
+    type: object
+    properties:
+      monoCrow:
+        type: array
+        items:
+          type: object
+          properties:
+            crowId:
+              type: string
+            whitelistId:
+              type: string
+            sellerCrowId:
+              type: string
+            buyerCrowId:
+              type: string
+            disputeId:
+              type: array
+              items:
+                type: string
+            timeout:
+              type: array
+              items:
+                type: string
+            status:
+              type: string
+            seller:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllMonoDisputeResponse:
+    type: object
+    properties:
+      monoDispute:
+        type: array
+        items:
+          type: object
+          properties:
+            disputeId:
+              type: string
+            title:
+              type: string
+            desc:
+              type: string
+            evidence:
+              type: string
+            plaintiff:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllMonoRebutalResponse:
+    type: object
+    properties:
+      monoRebutal:
+        type: array
+        items:
+          type: object
+          properties:
+            rebuttalId:
+              type: string
+            desc:
+              type: string
+            evidence:
+              type: string
+            defendant:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllPollResponse:
+    type: object
+    properties:
+      poll:
+        type: array
+        items:
+          type: object
+          properties:
+            crowId:
+              type: string
+            disputeId:
+              type: string
+            verdictId:
+              type: string
+            voteIds:
+              type: array
+              items:
+                type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllRebuttalResponse:
+    type: object
+    properties:
+      rebuttal:
+        type: array
+        items:
+          type: object
+          properties:
+            disputeId:
+              type: string
+            defendantId:
+              type: string
+            rebuttalId:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllSellerCrowResponse:
+    type: object
+    properties:
+      sellerCrow:
+        type: array
+        items:
+          type: object
+          properties:
+            crowId:
+              type: string
+            sellerId:
+              type: string
+            sellerCrowId:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllSellerMonoCrowResponse:
+    type: object
+    properties:
+      sellerMonoCrow:
+        type: array
+        items:
+          type: object
+          properties:
+            sellerCrowId:
+              type: string
+            collateral:
+              type: array
+              items:
+                type: object
+                properties:
+                  denom:
+                    type: string
+                  amount:
+                    type: string
+                description: >-
+                  Coin defines a token with a denomination and an amount.
+
+
+                  NOTE: The amount field is an Int which implements the custom
+                  method
+
+                  signatures required by gogoproto.
+            status:
+              type: string
+            seller:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllVerdictResponse:
+    type: object
+    properties:
+      verdict:
+        type: array
+        items:
+          type: object
+          properties:
+            verdictId:
+              type: string
+            voteIds:
+              type: array
+              items:
+                type: string
+            resultingVote:
+              type: object
+              properties:
+                voteId:
+                  type: string
+                buyerGuilty:
+                  type: boolean
+                sellerGuilty:
+                  type: boolean
+                refundToBuyer:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      denom:
+                        type: string
+                      amount:
+                        type: string
+                    description: >-
+                      Coin defines a token with a denomination and an amount.
+
+
+                      NOTE: The amount field is an Int which implements the
+                      custom method
+
+                      signatures required by gogoproto.
+                sendToSeller:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      denom:
+                        type: string
+                      amount:
+                        type: string
+                    description: >-
+                      Coin defines a token with a denomination and an amount.
+
+
+                      NOTE: The amount field is an Int which implements the
+                      custom method
+
+                      signatures required by gogoproto.
+                buyerPunishment:
+                  type: string
+                sellerPunishment:
+                  type: string
+                voter:
+                  type: string
+            creator:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryAllVoteResponse:
+    type: object
+    properties:
+      vote:
+        type: array
+        items:
+          type: object
+          properties:
+            voteId:
+              type: string
+            buyerGuilty:
+              type: boolean
+            sellerGuilty:
+              type: boolean
+            refundToBuyer:
+              type: array
+              items:
+                type: object
+                properties:
+                  denom:
+                    type: string
+                  amount:
+                    type: string
+                description: >-
+                  Coin defines a token with a denomination and an amount.
+
+
+                  NOTE: The amount field is an Int which implements the custom
+                  method
+
+                  signatures required by gogoproto.
+            sendToSeller:
+              type: array
+              items:
+                type: object
+                properties:
+                  denom:
+                    type: string
+                  amount:
+                    type: string
+                description: >-
+                  Coin defines a token with a denomination and an amount.
+
+
+                  NOTE: The amount field is an Int which implements the custom
+                  method
+
+                  signatures required by gogoproto.
+            buyerPunishment:
+              type: string
+            sellerPunishment:
+              type: string
+            voter:
+              type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+            title: |-
+              next_key is the key to be passed to PageRequest.key to
+              query the next page most efficiently
+          total:
+            type: string
+            format: uint64
+            title: >-
+              total is total number of results available if
+              PageRequest.count_total
+
+              was set, its value is undefined otherwise
+        description: |-
+          PageResponse is to be embedded in gRPC response messages where the
+          corresponding request message has used PageRequest.
+
+           message SomeResponse {
+                   repeated Bar results = 1;
+                   PageResponse page = 2;
+           }
+  crowlabs.delta.escrow.QueryGetBallotResponse:
+    type: object
+    properties:
+      ballot:
+        type: object
+        properties:
+          disputeId:
+            type: string
+          voterId:
+            type: string
+          voteId:
+            type: string
+  crowlabs.delta.escrow.QueryGetBuyerCrowResponse:
+    type: object
+    properties:
+      buyerCrow:
+        type: object
+        properties:
+          crowId:
+            type: string
+          buyerId:
+            type: string
+          buyerCrowId:
+            type: string
+  crowlabs.delta.escrow.QueryGetBuyerMonoCrowResponse:
+    type: object
+    properties:
+      buyerMonoCrow:
+        type: object
+        properties:
+          buyerCrowId:
+            type: string
+          deposit:
+            type: array
+            items:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+          collateral:
+            type: array
+            items:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+          status:
+            type: string
+          buyer:
+            type: string
+  crowlabs.delta.escrow.QueryGetCrowResponse:
+    type: object
+    properties:
+      crow:
+        type: object
+        properties:
+          orderId:
+            type: string
+          listingId:
+            type: string
+          crowId:
+            type: string
+  crowlabs.delta.escrow.QueryGetDisputeResponse:
+    type: object
+    properties:
+      dispute:
+        type: object
+        properties:
+          crowId:
+            type: string
+          plaintiffId:
+            type: string
+          disputeId:
+            type: string
+  crowlabs.delta.escrow.QueryGetMonoCrowResponse:
+    type: object
+    properties:
+      monoCrow:
+        type: object
+        properties:
+          crowId:
+            type: string
+          whitelistId:
+            type: string
+          sellerCrowId:
+            type: string
+          buyerCrowId:
+            type: string
+          disputeId:
+            type: array
+            items:
+              type: string
+          timeout:
+            type: array
+            items:
+              type: string
+          status:
+            type: string
+          seller:
+            type: string
+  crowlabs.delta.escrow.QueryGetMonoDisputeResponse:
+    type: object
+    properties:
+      monoDispute:
+        type: object
+        properties:
+          disputeId:
+            type: string
+          title:
+            type: string
+          desc:
+            type: string
+          evidence:
+            type: string
+          plaintiff:
+            type: string
+  crowlabs.delta.escrow.QueryGetMonoRebutalResponse:
+    type: object
+    properties:
+      monoRebutal:
+        type: object
+        properties:
+          rebuttalId:
+            type: string
+          desc:
+            type: string
+          evidence:
+            type: string
+          defendant:
+            type: string
+  crowlabs.delta.escrow.QueryGetPollResponse:
+    type: object
+    properties:
+      poll:
+        type: object
+        properties:
+          crowId:
+            type: string
+          disputeId:
+            type: string
+          verdictId:
+            type: string
+          voteIds:
+            type: array
+            items:
+              type: string
+  crowlabs.delta.escrow.QueryGetRebuttalResponse:
+    type: object
+    properties:
+      rebuttal:
+        type: object
+        properties:
+          disputeId:
+            type: string
+          defendantId:
+            type: string
+          rebuttalId:
+            type: string
+  crowlabs.delta.escrow.QueryGetSellerCrowResponse:
+    type: object
+    properties:
+      sellerCrow:
+        type: object
+        properties:
+          crowId:
+            type: string
+          sellerId:
+            type: string
+          sellerCrowId:
+            type: string
+  crowlabs.delta.escrow.QueryGetSellerMonoCrowResponse:
+    type: object
+    properties:
+      sellerMonoCrow:
+        type: object
+        properties:
+          sellerCrowId:
+            type: string
+          collateral:
+            type: array
+            items:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+          status:
+            type: string
+          seller:
+            type: string
+  crowlabs.delta.escrow.QueryGetVerdictResponse:
+    type: object
+    properties:
+      verdict:
+        type: object
+        properties:
+          verdictId:
+            type: string
+          voteIds:
+            type: array
+            items:
+              type: string
+          resultingVote:
+            type: object
+            properties:
+              voteId:
+                type: string
+              buyerGuilty:
+                type: boolean
+              sellerGuilty:
+                type: boolean
+              refundToBuyer:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    denom:
+                      type: string
+                    amount:
+                      type: string
+                  description: >-
+                    Coin defines a token with a denomination and an amount.
+
+
+                    NOTE: The amount field is an Int which implements the custom
+                    method
+
+                    signatures required by gogoproto.
+              sendToSeller:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    denom:
+                      type: string
+                    amount:
+                      type: string
+                  description: >-
+                    Coin defines a token with a denomination and an amount.
+
+
+                    NOTE: The amount field is an Int which implements the custom
+                    method
+
+                    signatures required by gogoproto.
+              buyerPunishment:
+                type: string
+              sellerPunishment:
+                type: string
+              voter:
+                type: string
+          creator:
+            type: string
+  crowlabs.delta.escrow.QueryGetVoteResponse:
+    type: object
+    properties:
+      vote:
+        type: object
+        properties:
+          voteId:
+            type: string
+          buyerGuilty:
+            type: boolean
+          sellerGuilty:
+            type: boolean
+          refundToBuyer:
+            type: array
+            items:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+          sendToSeller:
+            type: array
+            items:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+          buyerPunishment:
+            type: string
+          sellerPunishment:
+            type: string
+          voter:
+            type: string
+  crowlabs.delta.escrow.QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        description: params holds all the parameters of this module.
+        type: object
+    description: QueryParamsResponse is response type for the Query/Params RPC method.
+  crowlabs.delta.escrow.Rebuttal:
+    type: object
+    properties:
+      disputeId:
+        type: string
+      defendantId:
+        type: string
+      rebuttalId:
+        type: string
+  crowlabs.delta.escrow.SellerCrow:
+    type: object
+    properties:
+      crowId:
+        type: string
+      sellerId:
+        type: string
+      sellerCrowId:
+        type: string
+  crowlabs.delta.escrow.SellerMonoCrow:
+    type: object
+    properties:
+      sellerCrowId:
+        type: string
+      collateral:
+        type: array
+        items:
+          type: object
+          properties:
+            denom:
+              type: string
+            amount:
+              type: string
+          description: |-
+            Coin defines a token with a denomination and an amount.
+
+            NOTE: The amount field is an Int which implements the custom method
+            signatures required by gogoproto.
+      status:
+        type: string
+      seller:
+        type: string
+  crowlabs.delta.escrow.Verdict:
+    type: object
+    properties:
+      verdictId:
+        type: string
+      voteIds:
+        type: array
+        items:
+          type: string
+      resultingVote:
+        type: object
+        properties:
+          voteId:
+            type: string
+          buyerGuilty:
+            type: boolean
+          sellerGuilty:
+            type: boolean
+          refundToBuyer:
+            type: array
+            items:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+          sendToSeller:
+            type: array
+            items:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
+
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
+          buyerPunishment:
+            type: string
+          sellerPunishment:
+            type: string
+          voter:
+            type: string
+      creator:
+        type: string
+  crowlabs.delta.escrow.Vote:
+    type: object
+    properties:
+      voteId:
+        type: string
+      buyerGuilty:
+        type: boolean
+      sellerGuilty:
+        type: boolean
+      refundToBuyer:
+        type: array
+        items:
+          type: object
+          properties:
+            denom:
+              type: string
+            amount:
+              type: string
+          description: |-
+            Coin defines a token with a denomination and an amount.
+
+            NOTE: The amount field is an Int which implements the custom method
+            signatures required by gogoproto.
+      sendToSeller:
+        type: array
+        items:
+          type: object
+          properties:
+            denom:
+              type: string
+            amount:
+              type: string
+          description: |-
+            Coin defines a token with a denomination and an amount.
+
+            NOTE: The amount field is an Int which implements the custom method
+            signatures required by gogoproto.
+      buyerPunishment:
+        type: string
+      sellerPunishment:
+        type: string
+      voter:
+        type: string
   crowlabs.delta.market.Listing:
     type: object
     properties:

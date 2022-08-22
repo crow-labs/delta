@@ -1,0 +1,18 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message Vote {
+  string voteId = 1; 
+  bool buyerGuilty = 2; 
+  bool sellerGuilty = 3; 
+  repeated cosmos.base.v1beta1.Coin refundToBuyer = 4 [(gogoproto.nullable) = false]; 
+  repeated cosmos.base.v1beta1.Coin sendToSeller = 5 [(gogoproto.nullable) = false]; 
+  string buyerPunishment = 6; 
+  string sellerPunishment = 7; 
+  string voter = 8;
+}
+

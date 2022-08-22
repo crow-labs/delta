@@ -20,6 +20,7 @@ import CosmosIbcGoIbcCoreChannelV1 from './cosmos/ibc-go/ibc.core.channel.v1'
 import CosmosIbcGoIbcCoreClientV1 from './cosmos/ibc-go/ibc.core.client.v1'
 import CosmosIbcGoIbcCoreConnectionV1 from './cosmos/ibc-go/ibc.core.connection.v1'
 import CosmosIbcGoIbcCorePortV1 from './cosmos/ibc-go/ibc.core.port.v1'
+import CrowLabsDeltaCrowlabsDeltaEscrow from './crow-labs/delta/crowlabs.delta.escrow'
 import CrowLabsDeltaCrowlabsDeltaMarket from './crow-labs/delta/crowlabs.delta.market'
 import CrowLabsDeltaCrowlabsDeltaWhitelist from './crow-labs/delta/crowlabs.delta.whitelist'
 
@@ -45,6 +46,7 @@ export default {
   CosmosIbcGoIbcCoreClientV1: load(CosmosIbcGoIbcCoreClientV1, 'ibc.core.client.v1'),
   CosmosIbcGoIbcCoreConnectionV1: load(CosmosIbcGoIbcCoreConnectionV1, 'ibc.core.connection.v1'),
   CosmosIbcGoIbcCorePortV1: load(CosmosIbcGoIbcCorePortV1, 'ibc.core.port.v1'),
+  CrowLabsDeltaCrowlabsDeltaEscrow: load(CrowLabsDeltaCrowlabsDeltaEscrow, 'crowlabs.delta.escrow'),
   CrowLabsDeltaCrowlabsDeltaMarket: load(CrowLabsDeltaCrowlabsDeltaMarket, 'crowlabs.delta.market'),
   CrowLabsDeltaCrowlabsDeltaWhitelist: load(CrowLabsDeltaCrowlabsDeltaWhitelist, 'crowlabs.delta.whitelist'),
   

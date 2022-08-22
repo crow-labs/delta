@@ -1,0 +1,12 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+
+message Crow {
+  string orderId = 1; 
+  string listingId = 2; 
+  string crowId = 3; 
+  
+}
+

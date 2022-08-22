@@ -1,0 +1,444 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "escrow/params.proto";
+import "escrow/buyer_crow.proto";
+import "escrow/buyer_mono_crow.proto";
+import "escrow/seller_crow.proto";
+import "escrow/seller_mono_crow.proto";
+import "escrow/crow.proto";
+import "escrow/mono_crow.proto";
+import "escrow/dispute.proto";
+import "escrow/mono_dispute.proto";
+import "escrow/rebuttal.proto";
+import "escrow/mono_rebutal.proto";
+import "escrow/ballot.proto";
+import "escrow/poll.proto";
+import "escrow/verdict.proto";
+// this line is used by starport scaffolding # 1
+import "escrow/vote.proto";
+import "cosmos/base/v1beta1/coin.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/crow-labs/delta/escrow/params";
+  }
+  // Queries a BuyerCrow by index.
+	rpc BuyerCrow(QueryGetBuyerCrowRequest) returns (QueryGetBuyerCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/buyer_crow/{crowId}/{buyerId}";
+	}
+
+	// Queries a list of BuyerCrow items.
+	rpc BuyerCrowAll(QueryAllBuyerCrowRequest) returns (QueryAllBuyerCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/buyer_crow";
+	}
+
+// Queries a BuyerMonoCrow by index.
+	rpc BuyerMonoCrow(QueryGetBuyerMonoCrowRequest) returns (QueryGetBuyerMonoCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/buyer_mono_crow/{buyerCrowId}";
+	}
+
+	// Queries a list of BuyerMonoCrow items.
+	rpc BuyerMonoCrowAll(QueryAllBuyerMonoCrowRequest) returns (QueryAllBuyerMonoCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/buyer_mono_crow";
+	}
+
+// Queries a SellerCrow by index.
+	rpc SellerCrow(QueryGetSellerCrowRequest) returns (QueryGetSellerCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/seller_crow/{crowId}/{sellerId}";
+	}
+
+	// Queries a list of SellerCrow items.
+	rpc SellerCrowAll(QueryAllSellerCrowRequest) returns (QueryAllSellerCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/seller_crow";
+	}
+
+// Queries a SellerMonoCrow by index.
+	rpc SellerMonoCrow(QueryGetSellerMonoCrowRequest) returns (QueryGetSellerMonoCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/seller_mono_crow/{sellerCrowId}";
+	}
+
+	// Queries a list of SellerMonoCrow items.
+	rpc SellerMonoCrowAll(QueryAllSellerMonoCrowRequest) returns (QueryAllSellerMonoCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/seller_mono_crow";
+	}
+
+// Queries a Crow by index.
+	rpc Crow(QueryGetCrowRequest) returns (QueryGetCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/crow/{orderId}/{listingId}";
+	}
+
+	// Queries a list of Crow items.
+	rpc CrowAll(QueryAllCrowRequest) returns (QueryAllCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/crow";
+	}
+
+// Queries a MonoCrow by index.
+	rpc MonoCrow(QueryGetMonoCrowRequest) returns (QueryGetMonoCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/mono_crow/{crowId}";
+	}
+
+	// Queries a list of MonoCrow items.
+	rpc MonoCrowAll(QueryAllMonoCrowRequest) returns (QueryAllMonoCrowResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/mono_crow";
+	}
+
+// Queries a Dispute by index.
+	rpc Dispute(QueryGetDisputeRequest) returns (QueryGetDisputeResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/dispute/{crowId}/{plaintiffId}";
+	}
+
+	// Queries a list of Dispute items.
+	rpc DisputeAll(QueryAllDisputeRequest) returns (QueryAllDisputeResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/dispute";
+	}
+
+// Queries a MonoDispute by index.
+	rpc MonoDispute(QueryGetMonoDisputeRequest) returns (QueryGetMonoDisputeResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/mono_dispute/{disputeId}";
+	}
+
+	// Queries a list of MonoDispute items.
+	rpc MonoDisputeAll(QueryAllMonoDisputeRequest) returns (QueryAllMonoDisputeResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/mono_dispute";
+	}
+
+// Queries a Rebuttal by index.
+	rpc Rebuttal(QueryGetRebuttalRequest) returns (QueryGetRebuttalResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/rebuttal/{disputeId}/{defendantId}";
+	}
+
+	// Queries a list of Rebuttal items.
+	rpc RebuttalAll(QueryAllRebuttalRequest) returns (QueryAllRebuttalResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/rebuttal";
+	}
+
+// Queries a MonoRebutal by index.
+	rpc MonoRebutal(QueryGetMonoRebutalRequest) returns (QueryGetMonoRebutalResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/mono_rebutal/{rebuttalId}";
+	}
+
+	// Queries a list of MonoRebutal items.
+	rpc MonoRebutalAll(QueryAllMonoRebutalRequest) returns (QueryAllMonoRebutalResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/mono_rebutal";
+	}
+
+// Queries a Ballot by index.
+	rpc Ballot(QueryGetBallotRequest) returns (QueryGetBallotResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/ballot/{disputeId}/{voterId}";
+	}
+
+	// Queries a list of Ballot items.
+	rpc BallotAll(QueryAllBallotRequest) returns (QueryAllBallotResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/ballot";
+	}
+
+// Queries a Vote by index.
+	rpc Vote(QueryGetVoteRequest) returns (QueryGetVoteResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/vote/{voteId}";
+	}
+
+	// Queries a list of Vote items.
+	rpc VoteAll(QueryAllVoteRequest) returns (QueryAllVoteResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/vote";
+	}
+
+// Queries a Poll by index.
+	rpc Poll(QueryGetPollRequest) returns (QueryGetPollResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/poll/{crowId}/{disputeId}";
+	}
+
+	// Queries a list of Poll items.
+	rpc PollAll(QueryAllPollRequest) returns (QueryAllPollResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/poll";
+	}
+
+// Queries a Verdict by index.
+	rpc Verdict(QueryGetVerdictRequest) returns (QueryGetVerdictResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/verdict/{verdictId}";
+	}
+
+	// Queries a list of Verdict items.
+	rpc VerdictAll(QueryAllVerdictRequest) returns (QueryAllVerdictResponse) {
+		option (google.api.http).get = "/crow-labs/delta/escrow/verdict";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetBuyerCrowRequest {
+	  string crowId = 1;
+  string buyerId = 2;
+
+}
+
+message QueryGetBuyerCrowResponse {
+	BuyerCrow buyerCrow = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllBuyerCrowRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllBuyerCrowResponse {
+	repeated BuyerCrow buyerCrow = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetBuyerMonoCrowRequest {
+	  string buyerCrowId = 1;
+
+}
+
+message QueryGetBuyerMonoCrowResponse {
+	BuyerMonoCrow buyerMonoCrow = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllBuyerMonoCrowRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllBuyerMonoCrowResponse {
+	repeated BuyerMonoCrow buyerMonoCrow = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSellerCrowRequest {
+	  string crowId = 1;
+  string sellerId = 2;
+
+}
+
+message QueryGetSellerCrowResponse {
+	SellerCrow sellerCrow = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSellerCrowRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSellerCrowResponse {
+	repeated SellerCrow sellerCrow = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSellerMonoCrowRequest {
+	  string sellerCrowId = 1;
+
+}
+
+message QueryGetSellerMonoCrowResponse {
+	SellerMonoCrow sellerMonoCrow = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSellerMonoCrowRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSellerMonoCrowResponse {
+	repeated SellerMonoCrow sellerMonoCrow = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetCrowRequest {
+	  string orderId = 1;
+  string listingId = 2;
+
+}
+
+message QueryGetCrowResponse {
+	Crow crow = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllCrowRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllCrowResponse {
+	repeated Crow crow = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMonoCrowRequest {
+	  string crowId = 1;
+
+}
+
+message QueryGetMonoCrowResponse {
+	MonoCrow monoCrow = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMonoCrowRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMonoCrowResponse {
+	repeated MonoCrow monoCrow = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetDisputeRequest {
+	  string crowId = 1;
+  string plaintiffId = 2;
+
+}
+
+message QueryGetDisputeResponse {
+	Dispute dispute = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllDisputeRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllDisputeResponse {
+	repeated Dispute dispute = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMonoDisputeRequest {
+	  string disputeId = 1;
+
+}
+
+message QueryGetMonoDisputeResponse {
+	MonoDispute monoDispute = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMonoDisputeRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMonoDisputeResponse {
+	repeated MonoDispute monoDispute = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetRebuttalRequest {
+	  string disputeId = 1;
+  string defendantId = 2;
+
+}
+
+message QueryGetRebuttalResponse {
+	Rebuttal rebuttal = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllRebuttalRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllRebuttalResponse {
+	repeated Rebuttal rebuttal = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMonoRebutalRequest {
+	  string rebuttalId = 1;
+
+}
+
+message QueryGetMonoRebutalResponse {
+	MonoRebutal monoRebutal = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMonoRebutalRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMonoRebutalResponse {
+	repeated MonoRebutal monoRebutal = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetBallotRequest {
+	  string disputeId = 1;
+  string voterId = 2;
+
+}
+
+message QueryGetBallotResponse {
+	Ballot ballot = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllBallotRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllBallotResponse {
+	repeated Ballot ballot = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetVoteRequest {
+	  string voteId = 1;
+
+}
+
+message QueryGetVoteResponse {
+	Vote vote = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllVoteRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllVoteResponse {
+	repeated Vote vote = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetPollRequest {
+	  string crowId = 1;
+  string disputeId = 2;
+
+}
+
+message QueryGetPollResponse {
+	Poll poll = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPollRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPollResponse {
+	repeated Poll poll = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetVerdictRequest {
+	  string verdictId = 1;
+
+}
+
+message QueryGetVerdictResponse {
+	Verdict verdict = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllVerdictRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllVerdictResponse {
+	repeated Verdict verdict = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// this line is used by starport scaffolding # 3

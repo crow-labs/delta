@@ -1,0 +1,15 @@
+syntax = "proto3";
+package crowlabs.delta.escrow;
+
+option go_package = "github.com/crow-labs/delta/x/escrow/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message BuyerMonoCrow {
+  string buyerCrowId = 1; 
+  repeated cosmos.base.v1beta1.Coin deposit = 2 [(gogoproto.nullable) = false]; 
+  repeated cosmos.base.v1beta1.Coin collateral = 3 [(gogoproto.nullable) = false]; 
+  string status = 4; 
+  string buyer = 5;
+}
+
