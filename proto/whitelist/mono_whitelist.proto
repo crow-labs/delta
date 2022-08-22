@@ -1,0 +1,16 @@
+syntax = "proto3";
+package crowlabs.delta.whitelist;
+
+option go_package = "github.com/crow-labs/delta/x/whitelist/types";
+import "whitelist/buyer.proto"; 
+import "whitelist/seller.proto"; 
+import "whitelist/voter.proto"; 
+
+message MonoWhitelist {
+  string whitelistId = 1; 
+  Buyer buyer = 2; 
+  Seller seller = 3; 
+  Voter voter = 4; 
+  string governor = 5;
+}
+

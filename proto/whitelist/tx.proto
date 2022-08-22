@@ -1,0 +1,173 @@
+syntax = "proto3";
+package crowlabs.delta.whitelist;
+
+import "whitelist/whitelist.proto";
+import "whitelist/mono_whitelist.proto";
+// this line is used by starport scaffolding # proto/tx/import
+import "whitelist/voter.proto";
+import "whitelist/seller.proto";
+import "whitelist/buyer.proto";
+
+option go_package = "github.com/crow-labs/delta/x/whitelist/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc CreateBuyer(MsgCreateBuyer) returns (MsgCreateBuyerResponse);
+  rpc UpdateBuyer(MsgUpdateBuyer) returns (MsgUpdateBuyerResponse);
+  rpc DeleteBuyer(MsgDeleteBuyer) returns (MsgDeleteBuyerResponse);
+  rpc CreateSeller(MsgCreateSeller) returns (MsgCreateSellerResponse);
+  rpc UpdateSeller(MsgUpdateSeller) returns (MsgUpdateSellerResponse);
+  rpc DeleteSeller(MsgDeleteSeller) returns (MsgDeleteSellerResponse);
+  rpc CreateVoter(MsgCreateVoter) returns (MsgCreateVoterResponse);
+  rpc UpdateVoter(MsgUpdateVoter) returns (MsgUpdateVoterResponse);
+  rpc DeleteVoter(MsgDeleteVoter) returns (MsgDeleteVoterResponse);
+rpc CreateWhitelist(MsgCreateWhitelist) returns (MsgCreateWhitelistResponse);
+  rpc UpdateWhitelist(MsgUpdateWhitelist) returns (MsgUpdateWhitelistResponse);
+  rpc DeleteWhitelist(MsgDeleteWhitelist) returns (MsgDeleteWhitelistResponse);
+  rpc CreateMonoWhitelist(MsgCreateMonoWhitelist) returns (MsgCreateMonoWhitelistResponse);
+  rpc UpdateMonoWhitelist(MsgUpdateMonoWhitelist) returns (MsgUpdateMonoWhitelistResponse);
+  rpc DeleteMonoWhitelist(MsgDeleteMonoWhitelist) returns (MsgDeleteMonoWhitelistResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateBuyer {
+  string buyer = 1;
+  string buyerId = 2;
+
+  string name = 3;
+  uint64 numOrder = 4;
+  repeated string orderId = 5;
+  string status = 6;
+}
+message MsgCreateBuyerResponse {}
+
+message MsgUpdateBuyer {
+  string buyer = 1;
+  string buyerId = 2;
+
+  string name = 3;
+  uint64 numOrder = 4;
+  repeated string orderId = 5;
+  string status = 6;
+}
+message MsgUpdateBuyerResponse {}
+
+message MsgDeleteBuyer {
+  string buyer = 1;
+  string buyerId = 2;
+}
+message MsgDeleteBuyerResponse {}
+
+message MsgCreateSeller {
+  string producer = 1;
+  string sellerId = 2;
+
+  string name = 3;
+  string desc = 4;
+  string contactInfo = 5;
+  uint64 numListing = 6;
+  repeated string listingId = 7;
+  string status = 8;
+}
+message MsgCreateSellerResponse {}
+
+message MsgUpdateSeller {
+  string producer = 1;
+  string sellerId = 2;
+
+  string name = 3;
+  string desc = 4;
+  string contactInfo = 5;
+  uint64 numListing = 6;
+  repeated string listingId = 7;
+  string status = 8;
+}
+message MsgUpdateSellerResponse {}
+
+message MsgDeleteSeller {
+  string producer = 1;
+  string sellerId = 2;
+}
+message MsgDeleteSellerResponse {}
+
+message MsgCreateVoter {
+  string reviewer = 1;
+  string voterId = 2;
+
+  string name = 3;
+  uint64 votingPower = 4;
+  uint64 numVotes = 5;
+  repeated string voteId = 6;
+  string status = 7;
+}
+message MsgCreateVoterResponse {}
+
+message MsgUpdateVoter {
+  string reviewer = 1;
+  string voterId = 2;
+
+  string name = 3;
+  uint64 votingPower = 4;
+  uint64 numVotes = 5;
+  repeated string voteId = 6;
+  string status = 7;
+}
+message MsgUpdateVoterResponse {}
+
+message MsgDeleteVoter {
+  string reviewer = 1;
+  string voterId = 2;
+}
+message MsgDeleteVoterResponse {}
+
+message MsgCreateWhitelist {
+  string creator = 1;
+  string whitelistId = 2;
+}
+
+message MsgCreateWhitelistResponse {
+  uint64 id = 1;
+}
+
+message MsgUpdateWhitelist {
+  string creator = 1;
+  uint64 id = 2;
+  string whitelistId = 3;
+}
+
+message MsgUpdateWhitelistResponse {}
+
+message MsgDeleteWhitelist {
+  string creator = 1;
+  uint64 id = 2;
+}
+
+message MsgDeleteWhitelistResponse {}
+
+message MsgCreateMonoWhitelist {
+  string governor = 1;
+  string whitelistId = 2;
+
+  Buyer buyer = 3;
+  Seller seller = 4;
+  Voter voter = 5;
+}
+message MsgCreateMonoWhitelistResponse {}
+
+message MsgUpdateMonoWhitelist {
+  string governor = 1;
+  string whitelistId = 2;
+
+  Buyer buyer = 3;
+  Seller seller = 4;
+  Voter voter = 5;
+}
+message MsgUpdateMonoWhitelistResponse {}
+
+message MsgDeleteMonoWhitelist {
+  string governor = 1;
+  string whitelistId = 2;
+}
+message MsgDeleteMonoWhitelistResponse {}
+
+// this line is used by starport scaffolding # proto/tx/message

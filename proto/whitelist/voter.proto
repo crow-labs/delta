@@ -1,0 +1,15 @@
+syntax = "proto3";
+package crowlabs.delta.whitelist;
+
+option go_package = "github.com/crow-labs/delta/x/whitelist/types";
+
+message Voter {
+  string voterId = 1; 
+  string name = 2; 
+  uint64 votingPower = 3; 
+  uint64 numVotes = 4; 
+  repeated string voteId = 5; 
+  string status = 6; 
+  string reviewer = 7;
+}
+

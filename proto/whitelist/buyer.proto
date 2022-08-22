@@ -1,0 +1,14 @@
+syntax = "proto3";
+package crowlabs.delta.whitelist;
+
+option go_package = "github.com/crow-labs/delta/x/whitelist/types";
+
+message Buyer {
+  string buyerId = 1; 
+  string name = 2; 
+  uint64 numOrder = 3; 
+  repeated string orderId = 4; 
+  string status = 5; 
+  string buyer = 6;
+}
+

@@ -1,0 +1,10 @@
+syntax = "proto3";
+package crowlabs.delta.whitelist;
+
+option go_package = "github.com/crow-labs/delta/x/whitelist/types";
+
+message Whitelist {
+  uint64 id = 1;
+  string whitelistId = 2; 
+  string creator = 3;
+}

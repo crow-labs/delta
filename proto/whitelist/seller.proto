@@ -1,0 +1,16 @@
+syntax = "proto3";
+package crowlabs.delta.whitelist;
+
+option go_package = "github.com/crow-labs/delta/x/whitelist/types";
+
+message Seller {
+  string sellerId = 1; 
+  string name = 2; 
+  string desc = 3; 
+  string contactInfo = 4; 
+  uint64 numListing = 5; 
+  repeated string listingId = 6; 
+  string status = 7; 
+  string producer = 8;
+}
+

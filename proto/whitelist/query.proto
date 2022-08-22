@@ -1,0 +1,261 @@
+syntax = "proto3";
+package crowlabs.delta.whitelist;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "whitelist/params.proto";
+import "whitelist/user.proto";
+import "whitelist/producer.proto";
+import "whitelist/reviewer.proto";
+import "whitelist/whitelist.proto";
+import "whitelist/mono_whitelist.proto";
+// this line is used by starport scaffolding # 1
+import "whitelist/voter.proto";
+import "whitelist/seller.proto";
+import "whitelist/buyer.proto";
+
+option go_package = "github.com/crow-labs/delta/x/whitelist/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/crow-labs/delta/whitelist/params";
+  }
+  // Queries a User by index.
+	rpc User(QueryGetUserRequest) returns (QueryGetUserResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/user/{accAddr}";
+	}
+
+	// Queries a list of User items.
+	rpc UserAll(QueryAllUserRequest) returns (QueryAllUserResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/user";
+	}
+
+// Queries a Buyer by index.
+	rpc Buyer(QueryGetBuyerRequest) returns (QueryGetBuyerResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/buyer/{buyerId}";
+	}
+
+	// Queries a list of Buyer items.
+	rpc BuyerAll(QueryAllBuyerRequest) returns (QueryAllBuyerResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/buyer";
+	}
+
+// Queries a Producer by index.
+	rpc Producer(QueryGetProducerRequest) returns (QueryGetProducerResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/producer/{accAddr}";
+	}
+
+	// Queries a list of Producer items.
+	rpc ProducerAll(QueryAllProducerRequest) returns (QueryAllProducerResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/producer";
+	}
+
+// Queries a Seller by index.
+	rpc Seller(QueryGetSellerRequest) returns (QueryGetSellerResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/seller/{sellerId}";
+	}
+
+	// Queries a list of Seller items.
+	rpc SellerAll(QueryAllSellerRequest) returns (QueryAllSellerResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/seller";
+	}
+
+// Queries a Reviewer by index.
+	rpc Reviewer(QueryGetReviewerRequest) returns (QueryGetReviewerResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/reviewer/{accAddr}";
+	}
+
+	// Queries a list of Reviewer items.
+	rpc ReviewerAll(QueryAllReviewerRequest) returns (QueryAllReviewerResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/reviewer";
+	}
+
+// Queries a Voter by index.
+	rpc Voter(QueryGetVoterRequest) returns (QueryGetVoterResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/voter/{voterId}";
+	}
+
+	// Queries a list of Voter items.
+	rpc VoterAll(QueryAllVoterRequest) returns (QueryAllVoterResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/voter";
+	}
+
+// Queries a Whitelist by id.
+	rpc Whitelist(QueryGetWhitelistRequest) returns (QueryGetWhitelistResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/whitelist/{id}";
+	}
+
+	// Queries a list of Whitelist items.
+	rpc WhitelistAll(QueryAllWhitelistRequest) returns (QueryAllWhitelistResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/whitelist";
+	}
+
+// Queries a MonoWhitelist by index.
+	rpc MonoWhitelist(QueryGetMonoWhitelistRequest) returns (QueryGetMonoWhitelistResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/mono_whitelist/{whitelistId}";
+	}
+
+	// Queries a list of MonoWhitelist items.
+	rpc MonoWhitelistAll(QueryAllMonoWhitelistRequest) returns (QueryAllMonoWhitelistResponse) {
+		option (google.api.http).get = "/crow-labs/delta/whitelist/mono_whitelist";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetUserRequest {
+	  string accAddr = 1;
+
+}
+
+message QueryGetUserResponse {
+	User user = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllUserRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllUserResponse {
+	repeated User user = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetBuyerRequest {
+	  string buyerId = 1;
+
+}
+
+message QueryGetBuyerResponse {
+	Buyer buyer = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllBuyerRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllBuyerResponse {
+	repeated Buyer buyer = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetProducerRequest {
+	  string accAddr = 1;
+
+}
+
+message QueryGetProducerResponse {
+	Producer producer = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllProducerRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllProducerResponse {
+	repeated Producer producer = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSellerRequest {
+	  string sellerId = 1;
+
+}
+
+message QueryGetSellerResponse {
+	Seller seller = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSellerRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSellerResponse {
+	repeated Seller seller = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetReviewerRequest {
+	  string accAddr = 1;
+
+}
+
+message QueryGetReviewerResponse {
+	Reviewer reviewer = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllReviewerRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllReviewerResponse {
+	repeated Reviewer reviewer = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetVoterRequest {
+	  string voterId = 1;
+
+}
+
+message QueryGetVoterResponse {
+	Voter voter = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllVoterRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllVoterResponse {
+	repeated Voter voter = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetWhitelistRequest {
+	uint64 id = 1;
+}
+
+message QueryGetWhitelistResponse {
+	Whitelist Whitelist = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllWhitelistRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllWhitelistResponse {
+	repeated Whitelist Whitelist = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMonoWhitelistRequest {
+	  string whitelistId = 1;
+
+}
+
+message QueryGetMonoWhitelistResponse {
+	MonoWhitelist monoWhitelist = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMonoWhitelistRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMonoWhitelistResponse {
+	repeated MonoWhitelist monoWhitelist = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// this line is used by starport scaffolding # 3

@@ -1,0 +1,31 @@
+syntax = "proto3";
+package crowlabs.delta.whitelist;
+
+import "gogoproto/gogo.proto";
+import "whitelist/params.proto";
+import "whitelist/user.proto";
+import "whitelist/buyer.proto";
+import "whitelist/producer.proto";
+import "whitelist/seller.proto";
+import "whitelist/reviewer.proto";
+import "whitelist/voter.proto";
+import "whitelist/whitelist.proto";
+import "whitelist/mono_whitelist.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/crow-labs/delta/x/whitelist/types";
+
+// GenesisState defines the whitelist module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated User userList = 2 [(gogoproto.nullable) = false];
+  repeated Buyer buyerList = 3 [(gogoproto.nullable) = false];
+  repeated Producer producerList = 4 [(gogoproto.nullable) = false];
+  repeated Seller sellerList = 5 [(gogoproto.nullable) = false];
+  repeated Reviewer reviewerList = 6 [(gogoproto.nullable) = false];
+  repeated Voter voterList = 7 [(gogoproto.nullable) = false];
+  repeated Whitelist whitelistList = 8 [(gogoproto.nullable) = false];
+  uint64 whitelistCount = 9;
+  repeated MonoWhitelist monoWhitelistList = 10 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}
