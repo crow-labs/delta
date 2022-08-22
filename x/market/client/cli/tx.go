@@ -36,6 +36,12 @@ func GetTxCmd() *cobra.Command {
 	cmd.AddCommand(CmdCreateMonoOrder())
 	cmd.AddCommand(CmdUpdateMonoOrder())
 	cmd.AddCommand(CmdDeleteMonoOrder())
+	cmd.AddCommand(CmdOpenMonoListing())
+	cmd.AddCommand(CmdCloseListing())
+	cmd.AddCommand(CmdOpenMonoOrder())
+	cmd.AddCommand(CmdCancelPendingMonoOrder())
+	cmd.AddCommand(CmdUpdatePendingMonoOrder())
+	cmd.AddCommand(CmdAcceptMonoOrder())
 	// this line is used by starport scaffolding # 1
 
 	return cmd

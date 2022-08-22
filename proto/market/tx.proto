@@ -17,6 +17,12 @@ service Msg {
   rpc CreateMonoOrder(MsgCreateMonoOrder) returns (MsgCreateMonoOrderResponse);
   rpc UpdateMonoOrder(MsgUpdateMonoOrder) returns (MsgUpdateMonoOrderResponse);
   rpc DeleteMonoOrder(MsgDeleteMonoOrder) returns (MsgDeleteMonoOrderResponse);
+  rpc OpenMonoListing(MsgOpenMonoListing) returns (MsgOpenMonoListingResponse);
+  rpc CloseListing(MsgCloseListing) returns (MsgCloseListingResponse);
+  rpc OpenMonoOrder(MsgOpenMonoOrder) returns (MsgOpenMonoOrderResponse);
+  rpc CancelPendingMonoOrder(MsgCancelPendingMonoOrder) returns (MsgCancelPendingMonoOrderResponse);
+  rpc UpdatePendingMonoOrder(MsgUpdatePendingMonoOrder) returns (MsgUpdatePendingMonoOrderResponse);
+  rpc AcceptMonoOrder(MsgAcceptMonoOrder) returns (MsgAcceptMonoOrderResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -77,5 +83,69 @@ message MsgDeleteMonoOrder {
   string orderId = 2;
 }
 message MsgDeleteMonoOrderResponse {}
+
+message MsgOpenMonoListing {
+  string seller = 1;
+  string whitelistId = 2;
+  string title = 3;
+  string desc = 4;
+  repeated cosmos.base.v1beta1.Coin price = 5 [(gogoproto.nullable) = false];
+}
+
+message MsgOpenMonoListingResponse {
+  string listingId = 1;
+}
+
+message MsgCloseListing {
+  string seller = 1;
+  string listingId = 2;
+}
+
+message MsgCloseListingResponse {
+  string listingId = 1;
+  string status = 2;
+}
+
+message MsgOpenMonoOrder {
+  string buyer = 1;
+  string listingId = 2;
+  repeated cosmos.base.v1beta1.Coin price = 3 [(gogoproto.nullable) = false];
+  string timeout = 4;
+}
+
+message MsgOpenMonoOrderResponse {
+  string orderId = 1;
+}
+
+message MsgCancelPendingMonoOrder {
+  string buyer = 1;
+  string orderId = 2;
+}
+
+message MsgCancelPendingMonoOrderResponse {
+  string orderId = 1;
+  string status = 2;
+}
+
+message MsgUpdatePendingMonoOrder {
+  string buyer = 1;
+  string orderId = 2;
+  repeated cosmos.base.v1beta1.Coin price = 3 [(gogoproto.nullable) = false];
+  string timeeout = 4;
+}
+
+message MsgUpdatePendingMonoOrderResponse {
+  string orderId = 1;
+  string status = 2;
+}
+
+message MsgAcceptMonoOrder {
+  string seller = 1;
+  string orderId = 2;
+}
+
+message MsgAcceptMonoOrderResponse {
+  string crowId = 1;
+}
 
 // this line is used by starport scaffolding # proto/tx/message

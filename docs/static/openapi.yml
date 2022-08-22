@@ -20237,16 +20237,6 @@ paths:
           in: query
           required: false
           type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
       tags:
         - Query
   '/crow-labs/delta/market/listing/{whitelistId}/{sellerId}':
@@ -20437,16 +20427,6 @@ paths:
             when key
 
             is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
@@ -20656,16 +20636,6 @@ paths:
           in: query
           required: false
           type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
-          in: query
-          required: false
-          type: boolean
       tags:
         - Query
   '/crow-labs/delta/market/mono_order/{orderId}':
@@ -20843,16 +20813,6 @@ paths:
             when key
 
             is set.
-          in: query
-          required: false
-          type: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-
-
-            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
@@ -49598,6 +49558,25 @@ definitions:
         type: string
       buyer:
         type: string
+  crowlabs.delta.market.MsgAcceptMonoOrderResponse:
+    type: object
+    properties:
+      crowId:
+        type: string
+  crowlabs.delta.market.MsgCancelPendingMonoOrderResponse:
+    type: object
+    properties:
+      orderId:
+        type: string
+      status:
+        type: string
+  crowlabs.delta.market.MsgCloseListingResponse:
+    type: object
+    properties:
+      listingId:
+        type: string
+      status:
+        type: string
   crowlabs.delta.market.MsgCreateMonoListingResponse:
     type: object
   crowlabs.delta.market.MsgCreateMonoOrderResponse:
@@ -49606,10 +49585,27 @@ definitions:
     type: object
   crowlabs.delta.market.MsgDeleteMonoOrderResponse:
     type: object
+  crowlabs.delta.market.MsgOpenMonoListingResponse:
+    type: object
+    properties:
+      listingId:
+        type: string
+  crowlabs.delta.market.MsgOpenMonoOrderResponse:
+    type: object
+    properties:
+      orderId:
+        type: string
   crowlabs.delta.market.MsgUpdateMonoListingResponse:
     type: object
   crowlabs.delta.market.MsgUpdateMonoOrderResponse:
     type: object
+  crowlabs.delta.market.MsgUpdatePendingMonoOrderResponse:
+    type: object
+    properties:
+      orderId:
+        type: string
+      status:
+        type: string
   crowlabs.delta.market.Order:
     type: object
     properties:

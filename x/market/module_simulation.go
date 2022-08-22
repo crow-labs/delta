@@ -48,6 +48,30 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgDeleteMonoOrder int = 100
 
+	opWeightMsgOpenMonoListing = "op_weight_msg_open_mono_listing"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgOpenMonoListing int = 100
+
+	opWeightMsgCloseListing = "op_weight_msg_close_listing"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgCloseListing int = 100
+
+	opWeightMsgOpenMonoOrder = "op_weight_msg_open_mono_order"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgOpenMonoOrder int = 100
+
+	opWeightMsgCancelPendingMonoOrder = "op_weight_msg_cancel_pending_mono_order"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgCancelPendingMonoOrder int = 100
+
+	opWeightMsgUpdatePendingMonoOrder = "op_weight_msg_update_pending_mono_order"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgUpdatePendingMonoOrder int = 100
+
+	opWeightMsgAcceptMonoOrder = "op_weight_msg_accept_mono_order"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgAcceptMonoOrder int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -166,6 +190,72 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgDeleteMonoOrder,
 		marketsimulation.SimulateMsgDeleteMonoOrder(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgOpenMonoListing int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgOpenMonoListing, &weightMsgOpenMonoListing, nil,
+		func(_ *rand.Rand) {
+			weightMsgOpenMonoListing = defaultWeightMsgOpenMonoListing
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgOpenMonoListing,
+		marketsimulation.SimulateMsgOpenMonoListing(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgCloseListing int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgCloseListing, &weightMsgCloseListing, nil,
+		func(_ *rand.Rand) {
+			weightMsgCloseListing = defaultWeightMsgCloseListing
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgCloseListing,
+		marketsimulation.SimulateMsgCloseListing(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgOpenMonoOrder int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgOpenMonoOrder, &weightMsgOpenMonoOrder, nil,
+		func(_ *rand.Rand) {
+			weightMsgOpenMonoOrder = defaultWeightMsgOpenMonoOrder
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgOpenMonoOrder,
+		marketsimulation.SimulateMsgOpenMonoOrder(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgCancelPendingMonoOrder int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgCancelPendingMonoOrder, &weightMsgCancelPendingMonoOrder, nil,
+		func(_ *rand.Rand) {
+			weightMsgCancelPendingMonoOrder = defaultWeightMsgCancelPendingMonoOrder
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgCancelPendingMonoOrder,
+		marketsimulation.SimulateMsgCancelPendingMonoOrder(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgUpdatePendingMonoOrder int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgUpdatePendingMonoOrder, &weightMsgUpdatePendingMonoOrder, nil,
+		func(_ *rand.Rand) {
+			weightMsgUpdatePendingMonoOrder = defaultWeightMsgUpdatePendingMonoOrder
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgUpdatePendingMonoOrder,
+		marketsimulation.SimulateMsgUpdatePendingMonoOrder(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgAcceptMonoOrder int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgAcceptMonoOrder, &weightMsgAcceptMonoOrder, nil,
+		func(_ *rand.Rand) {
+			weightMsgAcceptMonoOrder = defaultWeightMsgAcceptMonoOrder
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgAcceptMonoOrder,
+		marketsimulation.SimulateMsgAcceptMonoOrder(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation

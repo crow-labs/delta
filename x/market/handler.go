@@ -35,6 +35,24 @@ func NewHandler(k keeper.Keeper) sdk.Handler {
 		case *types.MsgDeleteMonoOrder:
 			res, err := msgServer.DeleteMonoOrder(sdk.WrapSDKContext(ctx), msg)
 			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgOpenMonoListing:
+			res, err := msgServer.OpenMonoListing(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgCloseListing:
+			res, err := msgServer.CloseListing(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgOpenMonoOrder:
+			res, err := msgServer.OpenMonoOrder(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgCancelPendingMonoOrder:
+			res, err := msgServer.CancelPendingMonoOrder(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgUpdatePendingMonoOrder:
+			res, err := msgServer.UpdatePendingMonoOrder(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgAcceptMonoOrder:
+			res, err := msgServer.AcceptMonoOrder(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
 			// this line is used by starport scaffolding # 1
 		default:
 			errMsg := fmt.Sprintf("unrecognized %s message type: %T", types.ModuleName, msg)

@@ -421,18 +421,63 @@ export default {
 				}
 			}
 		},
-		async sendMsgDeleteMonoOrder({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgCloseListing({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteMonoOrder(value)
+				const msg = await txClient.msgCloseListing(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteMonoOrder:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCloseListing:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgDeleteMonoOrder:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgCloseListing:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgUpdatePendingMonoOrder({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgUpdatePendingMonoOrder(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdatePendingMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgUpdatePendingMonoOrder:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgUpdateMonoOrder({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgUpdateMonoOrder(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgUpdateMonoOrder:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgOpenMonoListing({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgOpenMonoListing(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgOpenMonoListing:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgOpenMonoListing:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -466,18 +511,63 @@ export default {
 				}
 			}
 		},
-		async sendMsgUpdateMonoOrder({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgDeleteMonoOrder({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateMonoOrder(value)
+				const msg = await txClient.msgDeleteMonoOrder(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMonoOrder:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgDeleteMonoOrder:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgUpdateMonoOrder:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgDeleteMonoOrder:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgOpenMonoOrder({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgOpenMonoOrder(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgOpenMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgOpenMonoOrder:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgCancelPendingMonoOrder({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgCancelPendingMonoOrder(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCancelPendingMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgCancelPendingMonoOrder:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgAcceptMonoOrder({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgAcceptMonoOrder(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgAcceptMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgAcceptMonoOrder:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -508,16 +598,55 @@ export default {
 				}
 			}
 		},
-		async MsgDeleteMonoOrder({ rootGetters }, { value }) {
+		async MsgCloseListing({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteMonoOrder(value)
+				const msg = await txClient.msgCloseListing(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteMonoOrder:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCloseListing:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgDeleteMonoOrder:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgCloseListing:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgUpdatePendingMonoOrder({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgUpdatePendingMonoOrder(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdatePendingMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgUpdatePendingMonoOrder:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgUpdateMonoOrder({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgUpdateMonoOrder(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgUpdateMonoOrder:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgOpenMonoListing({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgOpenMonoListing(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgOpenMonoListing:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgOpenMonoListing:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -547,16 +676,55 @@ export default {
 				}
 			}
 		},
-		async MsgUpdateMonoOrder({ rootGetters }, { value }) {
+		async MsgDeleteMonoOrder({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateMonoOrder(value)
+				const msg = await txClient.msgDeleteMonoOrder(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMonoOrder:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgDeleteMonoOrder:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgUpdateMonoOrder:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgDeleteMonoOrder:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgOpenMonoOrder({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgOpenMonoOrder(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgOpenMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgOpenMonoOrder:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgCancelPendingMonoOrder({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgCancelPendingMonoOrder(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCancelPendingMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgCancelPendingMonoOrder:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgAcceptMonoOrder({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgAcceptMonoOrder(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgAcceptMonoOrder:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgAcceptMonoOrder:Create Could not create message: ' + e.message)
 				}
 			}
 		},

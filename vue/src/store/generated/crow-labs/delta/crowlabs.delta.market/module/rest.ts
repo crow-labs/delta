@@ -34,6 +34,20 @@ export interface MarketMonoOrder {
   buyer?: string;
 }
 
+export interface MarketMsgAcceptMonoOrderResponse {
+  crowId?: string;
+}
+
+export interface MarketMsgCancelPendingMonoOrderResponse {
+  orderId?: string;
+  status?: string;
+}
+
+export interface MarketMsgCloseListingResponse {
+  listingId?: string;
+  status?: string;
+}
+
 export type MarketMsgCreateMonoListingResponse = object;
 
 export type MarketMsgCreateMonoOrderResponse = object;
@@ -42,9 +56,22 @@ export type MarketMsgDeleteMonoListingResponse = object;
 
 export type MarketMsgDeleteMonoOrderResponse = object;
 
+export interface MarketMsgOpenMonoListingResponse {
+  listingId?: string;
+}
+
+export interface MarketMsgOpenMonoOrderResponse {
+  orderId?: string;
+}
+
 export type MarketMsgUpdateMonoListingResponse = object;
 
 export type MarketMsgUpdateMonoOrderResponse = object;
+
+export interface MarketMsgUpdatePendingMonoOrderResponse {
+  orderId?: string;
+  status?: string;
+}
 
 export interface MarketOrder {
   listingId?: string;
