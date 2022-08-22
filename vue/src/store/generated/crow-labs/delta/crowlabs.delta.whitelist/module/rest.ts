@@ -106,6 +106,10 @@ export type WhitelistMsgCreateBuyerResponse = object;
 
 export type WhitelistMsgCreateMonoWhitelistResponse = object;
 
+export interface WhitelistMsgCreateNewWhitelistResponse {
+  whitelistId?: string;
+}
+
 export type WhitelistMsgCreateSellerResponse = object;
 
 export type WhitelistMsgCreateVoterResponse = object;
@@ -124,6 +128,18 @@ export type WhitelistMsgDeleteSellerResponse = object;
 export type WhitelistMsgDeleteVoterResponse = object;
 
 export type WhitelistMsgDeleteWhitelistResponse = object;
+
+export interface WhitelistMsgJoinBuyersResponse {
+  buyerId?: string;
+}
+
+export interface WhitelistMsgJoinSellersResponse {
+  sellerId?: string;
+}
+
+export interface WhitelistMsgJoinVotersResponse {
+  voterId?: string;
+}
 
 export type WhitelistMsgUpdateBuyerResponse = object;
 

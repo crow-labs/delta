@@ -151,6 +151,46 @@ export interface MsgDeleteMonoWhitelist {
 
 export interface MsgDeleteMonoWhitelistResponse {}
 
+export interface MsgJoinBuyers {
+  creator: string;
+  whitelistId: string;
+  name: string;
+}
+
+export interface MsgJoinBuyersResponse {
+  buyerId: string;
+}
+
+export interface MsgJoinSellers {
+  creator: string;
+  whitelistId: string;
+  name: string;
+  desc: string;
+  contactInfo: string;
+}
+
+export interface MsgJoinSellersResponse {
+  sellerId: string;
+}
+
+export interface MsgJoinVoters {
+  creator: string;
+  whitelistId: string;
+  name: string;
+}
+
+export interface MsgJoinVotersResponse {
+  voterId: string;
+}
+
+export interface MsgCreateNewWhitelist {
+  creator: string;
+}
+
+export interface MsgCreateNewWhitelistResponse {
+  whitelistId: string;
+}
+
 const baseMsgCreateBuyer: object = {
   buyer: "",
   buyerId: "",
@@ -2684,6 +2724,627 @@ export const MsgDeleteMonoWhitelistResponse = {
   },
 };
 
+const baseMsgJoinBuyers: object = { creator: "", whitelistId: "", name: "" };
+
+export const MsgJoinBuyers = {
+  encode(message: MsgJoinBuyers, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.whitelistId !== "") {
+      writer.uint32(18).string(message.whitelistId);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgJoinBuyers {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgJoinBuyers } as MsgJoinBuyers;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.whitelistId = reader.string();
+          break;
+        case 3:
+          message.name = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgJoinBuyers {
+    const message = { ...baseMsgJoinBuyers } as MsgJoinBuyers;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.whitelistId !== undefined && object.whitelistId !== null) {
+      message.whitelistId = String(object.whitelistId);
+    } else {
+      message.whitelistId = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgJoinBuyers): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.whitelistId !== undefined &&
+      (obj.whitelistId = message.whitelistId);
+    message.name !== undefined && (obj.name = message.name);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgJoinBuyers>): MsgJoinBuyers {
+    const message = { ...baseMsgJoinBuyers } as MsgJoinBuyers;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.whitelistId !== undefined && object.whitelistId !== null) {
+      message.whitelistId = object.whitelistId;
+    } else {
+      message.whitelistId = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgJoinBuyersResponse: object = { buyerId: "" };
+
+export const MsgJoinBuyersResponse = {
+  encode(
+    message: MsgJoinBuyersResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.buyerId !== "") {
+      writer.uint32(10).string(message.buyerId);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgJoinBuyersResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgJoinBuyersResponse } as MsgJoinBuyersResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.buyerId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgJoinBuyersResponse {
+    const message = { ...baseMsgJoinBuyersResponse } as MsgJoinBuyersResponse;
+    if (object.buyerId !== undefined && object.buyerId !== null) {
+      message.buyerId = String(object.buyerId);
+    } else {
+      message.buyerId = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgJoinBuyersResponse): unknown {
+    const obj: any = {};
+    message.buyerId !== undefined && (obj.buyerId = message.buyerId);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgJoinBuyersResponse>
+  ): MsgJoinBuyersResponse {
+    const message = { ...baseMsgJoinBuyersResponse } as MsgJoinBuyersResponse;
+    if (object.buyerId !== undefined && object.buyerId !== null) {
+      message.buyerId = object.buyerId;
+    } else {
+      message.buyerId = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgJoinSellers: object = {
+  creator: "",
+  whitelistId: "",
+  name: "",
+  desc: "",
+  contactInfo: "",
+};
+
+export const MsgJoinSellers = {
+  encode(message: MsgJoinSellers, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.whitelistId !== "") {
+      writer.uint32(18).string(message.whitelistId);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    if (message.desc !== "") {
+      writer.uint32(34).string(message.desc);
+    }
+    if (message.contactInfo !== "") {
+      writer.uint32(42).string(message.contactInfo);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgJoinSellers {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgJoinSellers } as MsgJoinSellers;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.whitelistId = reader.string();
+          break;
+        case 3:
+          message.name = reader.string();
+          break;
+        case 4:
+          message.desc = reader.string();
+          break;
+        case 5:
+          message.contactInfo = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgJoinSellers {
+    const message = { ...baseMsgJoinSellers } as MsgJoinSellers;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.whitelistId !== undefined && object.whitelistId !== null) {
+      message.whitelistId = String(object.whitelistId);
+    } else {
+      message.whitelistId = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    if (object.desc !== undefined && object.desc !== null) {
+      message.desc = String(object.desc);
+    } else {
+      message.desc = "";
+    }
+    if (object.contactInfo !== undefined && object.contactInfo !== null) {
+      message.contactInfo = String(object.contactInfo);
+    } else {
+      message.contactInfo = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgJoinSellers): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.whitelistId !== undefined &&
+      (obj.whitelistId = message.whitelistId);
+    message.name !== undefined && (obj.name = message.name);
+    message.desc !== undefined && (obj.desc = message.desc);
+    message.contactInfo !== undefined &&
+      (obj.contactInfo = message.contactInfo);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgJoinSellers>): MsgJoinSellers {
+    const message = { ...baseMsgJoinSellers } as MsgJoinSellers;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.whitelistId !== undefined && object.whitelistId !== null) {
+      message.whitelistId = object.whitelistId;
+    } else {
+      message.whitelistId = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
+    }
+    if (object.desc !== undefined && object.desc !== null) {
+      message.desc = object.desc;
+    } else {
+      message.desc = "";
+    }
+    if (object.contactInfo !== undefined && object.contactInfo !== null) {
+      message.contactInfo = object.contactInfo;
+    } else {
+      message.contactInfo = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgJoinSellersResponse: object = { sellerId: "" };
+
+export const MsgJoinSellersResponse = {
+  encode(
+    message: MsgJoinSellersResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.sellerId !== "") {
+      writer.uint32(10).string(message.sellerId);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgJoinSellersResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgJoinSellersResponse } as MsgJoinSellersResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.sellerId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgJoinSellersResponse {
+    const message = { ...baseMsgJoinSellersResponse } as MsgJoinSellersResponse;
+    if (object.sellerId !== undefined && object.sellerId !== null) {
+      message.sellerId = String(object.sellerId);
+    } else {
+      message.sellerId = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgJoinSellersResponse): unknown {
+    const obj: any = {};
+    message.sellerId !== undefined && (obj.sellerId = message.sellerId);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgJoinSellersResponse>
+  ): MsgJoinSellersResponse {
+    const message = { ...baseMsgJoinSellersResponse } as MsgJoinSellersResponse;
+    if (object.sellerId !== undefined && object.sellerId !== null) {
+      message.sellerId = object.sellerId;
+    } else {
+      message.sellerId = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgJoinVoters: object = { creator: "", whitelistId: "", name: "" };
+
+export const MsgJoinVoters = {
+  encode(message: MsgJoinVoters, writer: Writer = Writer.create()): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.whitelistId !== "") {
+      writer.uint32(18).string(message.whitelistId);
+    }
+    if (message.name !== "") {
+      writer.uint32(26).string(message.name);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgJoinVoters {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgJoinVoters } as MsgJoinVoters;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.whitelistId = reader.string();
+          break;
+        case 3:
+          message.name = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgJoinVoters {
+    const message = { ...baseMsgJoinVoters } as MsgJoinVoters;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    if (object.whitelistId !== undefined && object.whitelistId !== null) {
+      message.whitelistId = String(object.whitelistId);
+    } else {
+      message.whitelistId = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = String(object.name);
+    } else {
+      message.name = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgJoinVoters): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    message.whitelistId !== undefined &&
+      (obj.whitelistId = message.whitelistId);
+    message.name !== undefined && (obj.name = message.name);
+    return obj;
+  },
+
+  fromPartial(object: DeepPartial<MsgJoinVoters>): MsgJoinVoters {
+    const message = { ...baseMsgJoinVoters } as MsgJoinVoters;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    if (object.whitelistId !== undefined && object.whitelistId !== null) {
+      message.whitelistId = object.whitelistId;
+    } else {
+      message.whitelistId = "";
+    }
+    if (object.name !== undefined && object.name !== null) {
+      message.name = object.name;
+    } else {
+      message.name = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgJoinVotersResponse: object = { voterId: "" };
+
+export const MsgJoinVotersResponse = {
+  encode(
+    message: MsgJoinVotersResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.voterId !== "") {
+      writer.uint32(10).string(message.voterId);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgJoinVotersResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgJoinVotersResponse } as MsgJoinVotersResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.voterId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgJoinVotersResponse {
+    const message = { ...baseMsgJoinVotersResponse } as MsgJoinVotersResponse;
+    if (object.voterId !== undefined && object.voterId !== null) {
+      message.voterId = String(object.voterId);
+    } else {
+      message.voterId = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgJoinVotersResponse): unknown {
+    const obj: any = {};
+    message.voterId !== undefined && (obj.voterId = message.voterId);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgJoinVotersResponse>
+  ): MsgJoinVotersResponse {
+    const message = { ...baseMsgJoinVotersResponse } as MsgJoinVotersResponse;
+    if (object.voterId !== undefined && object.voterId !== null) {
+      message.voterId = object.voterId;
+    } else {
+      message.voterId = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgCreateNewWhitelist: object = { creator: "" };
+
+export const MsgCreateNewWhitelist = {
+  encode(
+    message: MsgCreateNewWhitelist,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    return writer;
+  },
+
+  decode(input: Reader | Uint8Array, length?: number): MsgCreateNewWhitelist {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = { ...baseMsgCreateNewWhitelist } as MsgCreateNewWhitelist;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgCreateNewWhitelist {
+    const message = { ...baseMsgCreateNewWhitelist } as MsgCreateNewWhitelist;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = String(object.creator);
+    } else {
+      message.creator = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgCreateNewWhitelist): unknown {
+    const obj: any = {};
+    message.creator !== undefined && (obj.creator = message.creator);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgCreateNewWhitelist>
+  ): MsgCreateNewWhitelist {
+    const message = { ...baseMsgCreateNewWhitelist } as MsgCreateNewWhitelist;
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    } else {
+      message.creator = "";
+    }
+    return message;
+  },
+};
+
+const baseMsgCreateNewWhitelistResponse: object = { whitelistId: "" };
+
+export const MsgCreateNewWhitelistResponse = {
+  encode(
+    message: MsgCreateNewWhitelistResponse,
+    writer: Writer = Writer.create()
+  ): Writer {
+    if (message.whitelistId !== "") {
+      writer.uint32(10).string(message.whitelistId);
+    }
+    return writer;
+  },
+
+  decode(
+    input: Reader | Uint8Array,
+    length?: number
+  ): MsgCreateNewWhitelistResponse {
+    const reader = input instanceof Uint8Array ? new Reader(input) : input;
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = {
+      ...baseMsgCreateNewWhitelistResponse,
+    } as MsgCreateNewWhitelistResponse;
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.whitelistId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgCreateNewWhitelistResponse {
+    const message = {
+      ...baseMsgCreateNewWhitelistResponse,
+    } as MsgCreateNewWhitelistResponse;
+    if (object.whitelistId !== undefined && object.whitelistId !== null) {
+      message.whitelistId = String(object.whitelistId);
+    } else {
+      message.whitelistId = "";
+    }
+    return message;
+  },
+
+  toJSON(message: MsgCreateNewWhitelistResponse): unknown {
+    const obj: any = {};
+    message.whitelistId !== undefined &&
+      (obj.whitelistId = message.whitelistId);
+    return obj;
+  },
+
+  fromPartial(
+    object: DeepPartial<MsgCreateNewWhitelistResponse>
+  ): MsgCreateNewWhitelistResponse {
+    const message = {
+      ...baseMsgCreateNewWhitelistResponse,
+    } as MsgCreateNewWhitelistResponse;
+    if (object.whitelistId !== undefined && object.whitelistId !== null) {
+      message.whitelistId = object.whitelistId;
+    } else {
+      message.whitelistId = "";
+    }
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   CreateBuyer(request: MsgCreateBuyer): Promise<MsgCreateBuyerResponse>;
@@ -2710,10 +3371,16 @@ export interface Msg {
   UpdateMonoWhitelist(
     request: MsgUpdateMonoWhitelist
   ): Promise<MsgUpdateMonoWhitelistResponse>;
-  /** this line is used by starport scaffolding # proto/tx/rpc */
   DeleteMonoWhitelist(
     request: MsgDeleteMonoWhitelist
   ): Promise<MsgDeleteMonoWhitelistResponse>;
+  JoinBuyers(request: MsgJoinBuyers): Promise<MsgJoinBuyersResponse>;
+  JoinSellers(request: MsgJoinSellers): Promise<MsgJoinSellersResponse>;
+  JoinVoters(request: MsgJoinVoters): Promise<MsgJoinVotersResponse>;
+  /** this line is used by starport scaffolding # proto/tx/rpc */
+  CreateNewWhitelist(
+    request: MsgCreateNewWhitelist
+  ): Promise<MsgCreateNewWhitelistResponse>;
 }
 
 export class MsgClientImpl implements Msg {
@@ -2910,6 +3577,56 @@ export class MsgClientImpl implements Msg {
     );
     return promise.then((data) =>
       MsgDeleteMonoWhitelistResponse.decode(new Reader(data))
+    );
+  }
+
+  JoinBuyers(request: MsgJoinBuyers): Promise<MsgJoinBuyersResponse> {
+    const data = MsgJoinBuyers.encode(request).finish();
+    const promise = this.rpc.request(
+      "crowlabs.delta.whitelist.Msg",
+      "JoinBuyers",
+      data
+    );
+    return promise.then((data) =>
+      MsgJoinBuyersResponse.decode(new Reader(data))
+    );
+  }
+
+  JoinSellers(request: MsgJoinSellers): Promise<MsgJoinSellersResponse> {
+    const data = MsgJoinSellers.encode(request).finish();
+    const promise = this.rpc.request(
+      "crowlabs.delta.whitelist.Msg",
+      "JoinSellers",
+      data
+    );
+    return promise.then((data) =>
+      MsgJoinSellersResponse.decode(new Reader(data))
+    );
+  }
+
+  JoinVoters(request: MsgJoinVoters): Promise<MsgJoinVotersResponse> {
+    const data = MsgJoinVoters.encode(request).finish();
+    const promise = this.rpc.request(
+      "crowlabs.delta.whitelist.Msg",
+      "JoinVoters",
+      data
+    );
+    return promise.then((data) =>
+      MsgJoinVotersResponse.decode(new Reader(data))
+    );
+  }
+
+  CreateNewWhitelist(
+    request: MsgCreateNewWhitelist
+  ): Promise<MsgCreateNewWhitelistResponse> {
+    const data = MsgCreateNewWhitelist.encode(request).finish();
+    const promise = this.rpc.request(
+      "crowlabs.delta.whitelist.Msg",
+      "CreateNewWhitelist",
+      data
+    );
+    return promise.then((data) =>
+      MsgCreateNewWhitelistResponse.decode(new Reader(data))
     );
   }
 }

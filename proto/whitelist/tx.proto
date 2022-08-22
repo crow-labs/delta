@@ -27,6 +27,10 @@ rpc CreateWhitelist(MsgCreateWhitelist) returns (MsgCreateWhitelistResponse);
   rpc CreateMonoWhitelist(MsgCreateMonoWhitelist) returns (MsgCreateMonoWhitelistResponse);
   rpc UpdateMonoWhitelist(MsgUpdateMonoWhitelist) returns (MsgUpdateMonoWhitelistResponse);
   rpc DeleteMonoWhitelist(MsgDeleteMonoWhitelist) returns (MsgDeleteMonoWhitelistResponse);
+  rpc JoinBuyers(MsgJoinBuyers) returns (MsgJoinBuyersResponse);
+  rpc JoinSellers(MsgJoinSellers) returns (MsgJoinSellersResponse);
+  rpc JoinVoters(MsgJoinVoters) returns (MsgJoinVotersResponse);
+  rpc CreateNewWhitelist(MsgCreateNewWhitelist) returns (MsgCreateNewWhitelistResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -169,5 +173,45 @@ message MsgDeleteMonoWhitelist {
   string whitelistId = 2;
 }
 message MsgDeleteMonoWhitelistResponse {}
+
+message MsgJoinBuyers {
+  string creator = 1;
+  string whitelistId = 2;
+  string name = 3;
+}
+
+message MsgJoinBuyersResponse {
+  string buyerId = 1;
+}
+
+message MsgJoinSellers {
+  string creator = 1;
+  string whitelistId = 2;
+  string name = 3;
+  string desc = 4;
+  string contactInfo = 5;
+}
+
+message MsgJoinSellersResponse {
+  string sellerId = 1;
+}
+
+message MsgJoinVoters {
+  string creator = 1;
+  string whitelistId = 2;
+  string name = 3;
+}
+
+message MsgJoinVotersResponse {
+  string voterId = 1;
+}
+
+message MsgCreateNewWhitelist {
+  string creator = 1;
+}
+
+message MsgCreateNewWhitelistResponse {
+  string whitelistId = 1;
+}
 
 // this line is used by starport scaffolding # proto/tx/message

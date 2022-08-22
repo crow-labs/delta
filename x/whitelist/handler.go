@@ -65,6 +65,18 @@ func NewHandler(k keeper.Keeper) sdk.Handler {
 		case *types.MsgDeleteMonoWhitelist:
 			res, err := msgServer.DeleteMonoWhitelist(sdk.WrapSDKContext(ctx), msg)
 			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgJoinBuyers:
+			res, err := msgServer.JoinBuyers(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgJoinSellers:
+			res, err := msgServer.JoinSellers(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgJoinVoters:
+			res, err := msgServer.JoinVoters(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgCreateNewWhitelist:
+			res, err := msgServer.CreateNewWhitelist(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
 			// this line is used by starport scaffolding # 1
 		default:
 			errMsg := fmt.Sprintf("unrecognized %s message type: %T", types.ModuleName, msg)

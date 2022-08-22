@@ -48797,6 +48797,11 @@ definitions:
     type: object
   crowlabs.delta.whitelist.MsgCreateMonoWhitelistResponse:
     type: object
+  crowlabs.delta.whitelist.MsgCreateNewWhitelistResponse:
+    type: object
+    properties:
+      whitelistId:
+        type: string
   crowlabs.delta.whitelist.MsgCreateSellerResponse:
     type: object
   crowlabs.delta.whitelist.MsgCreateVoterResponse:
@@ -48817,6 +48822,21 @@ definitions:
     type: object
   crowlabs.delta.whitelist.MsgDeleteWhitelistResponse:
     type: object
+  crowlabs.delta.whitelist.MsgJoinBuyersResponse:
+    type: object
+    properties:
+      buyerId:
+        type: string
+  crowlabs.delta.whitelist.MsgJoinSellersResponse:
+    type: object
+    properties:
+      sellerId:
+        type: string
+  crowlabs.delta.whitelist.MsgJoinVotersResponse:
+    type: object
+    properties:
+      voterId:
+        type: string
   crowlabs.delta.whitelist.MsgUpdateBuyerResponse:
     type: object
   crowlabs.delta.whitelist.MsgUpdateMonoWhitelistResponse:
