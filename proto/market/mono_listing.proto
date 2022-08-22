@@ -1,0 +1,18 @@
+syntax = "proto3";
+package crowlabs.delta.market;
+
+option go_package = "github.com/crow-labs/delta/x/market/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message MonoListing {
+  string listingId = 1; 
+  string title = 2; 
+  string desc = 3; 
+  repeated cosmos.base.v1beta1.Coin price = 4 [(gogoproto.nullable) = false]; 
+  repeated string orderId = 5; 
+  string acceptedOrderId = 6; 
+  string status = 7; 
+  string seller = 8;
+}
+

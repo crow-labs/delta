@@ -1,0 +1,22 @@
+syntax = "proto3";
+package crowlabs.delta.market;
+
+import "gogoproto/gogo.proto";
+import "market/params.proto";
+import "market/listing.proto";
+import "market/mono_listing.proto";
+import "market/order.proto";
+import "market/mono_order.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/crow-labs/delta/x/market/types";
+
+// GenesisState defines the market module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated Listing listingList = 2 [(gogoproto.nullable) = false];
+  repeated MonoListing monoListingList = 3 [(gogoproto.nullable) = false];
+  repeated Order orderList = 4 [(gogoproto.nullable) = false];
+  repeated MonoOrder monoOrderList = 5 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}

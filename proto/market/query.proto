@@ -1,0 +1,149 @@
+syntax = "proto3";
+package crowlabs.delta.market;
+
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "market/params.proto";
+import "market/listing.proto";
+import "market/mono_listing.proto";
+import "market/order.proto";
+import "market/mono_order.proto";
+// this line is used by starport scaffolding # 1
+import "cosmos/base/v1beta1/coin.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/crow-labs/delta/x/market/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/crow-labs/delta/market/params";
+  }
+  // Queries a Listing by index.
+	rpc Listing(QueryGetListingRequest) returns (QueryGetListingResponse) {
+		option (google.api.http).get = "/crow-labs/delta/market/listing/{whitelistId}/{sellerId}";
+	}
+
+	// Queries a list of Listing items.
+	rpc ListingAll(QueryAllListingRequest) returns (QueryAllListingResponse) {
+		option (google.api.http).get = "/crow-labs/delta/market/listing";
+	}
+
+// Queries a MonoListing by index.
+	rpc MonoListing(QueryGetMonoListingRequest) returns (QueryGetMonoListingResponse) {
+		option (google.api.http).get = "/crow-labs/delta/market/mono_listing/{listingId}";
+	}
+
+	// Queries a list of MonoListing items.
+	rpc MonoListingAll(QueryAllMonoListingRequest) returns (QueryAllMonoListingResponse) {
+		option (google.api.http).get = "/crow-labs/delta/market/mono_listing";
+	}
+
+// Queries a Order by index.
+	rpc Order(QueryGetOrderRequest) returns (QueryGetOrderResponse) {
+		option (google.api.http).get = "/crow-labs/delta/market/order/{listingId}/{buyerId}";
+	}
+
+	// Queries a list of Order items.
+	rpc OrderAll(QueryAllOrderRequest) returns (QueryAllOrderResponse) {
+		option (google.api.http).get = "/crow-labs/delta/market/order";
+	}
+
+// Queries a MonoOrder by index.
+	rpc MonoOrder(QueryGetMonoOrderRequest) returns (QueryGetMonoOrderResponse) {
+		option (google.api.http).get = "/crow-labs/delta/market/mono_order/{orderId}";
+	}
+
+	// Queries a list of MonoOrder items.
+	rpc MonoOrderAll(QueryAllMonoOrderRequest) returns (QueryAllMonoOrderResponse) {
+		option (google.api.http).get = "/crow-labs/delta/market/mono_order";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetListingRequest {
+	  string whitelistId = 1;
+  string sellerId = 2;
+
+}
+
+message QueryGetListingResponse {
+	Listing listing = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllListingRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllListingResponse {
+	repeated Listing listing = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMonoListingRequest {
+	  string listingId = 1;
+
+}
+
+message QueryGetMonoListingResponse {
+	MonoListing monoListing = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMonoListingRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMonoListingResponse {
+	repeated MonoListing monoListing = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetOrderRequest {
+	  string listingId = 1;
+  string buyerId = 2;
+
+}
+
+message QueryGetOrderResponse {
+	Order order = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllOrderRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllOrderResponse {
+	repeated Order order = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMonoOrderRequest {
+	  string orderId = 1;
+
+}
+
+message QueryGetMonoOrderResponse {
+	MonoOrder monoOrder = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMonoOrderRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMonoOrderResponse {
+	repeated MonoOrder monoOrder = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// this line is used by starport scaffolding # 3

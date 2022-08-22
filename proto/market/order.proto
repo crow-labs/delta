@@ -1,0 +1,12 @@
+syntax = "proto3";
+package crowlabs.delta.market;
+
+option go_package = "github.com/crow-labs/delta/x/market/types";
+
+message Order {
+  string listingId = 1; 
+  string buyerId = 2; 
+  repeated string orderId = 3; 
+  
+}
+

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package crowlabs.delta.market;
+
+option go_package = "github.com/crow-labs/delta/x/market/types";
+
+message Listing {
+  string whitelistId = 1; 
+  string sellerId = 2; 
+  repeated string listingId = 3; 
+  
+}
+

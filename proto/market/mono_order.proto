@@ -1,0 +1,15 @@
+syntax = "proto3";
+package crowlabs.delta.market;
+
+option go_package = "github.com/crow-labs/delta/x/market/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message MonoOrder {
+  string orderId = 1; 
+  repeated cosmos.base.v1beta1.Coin price = 2 [(gogoproto.nullable) = false]; 
+  string timeout = 3; 
+  string status = 4; 
+  string buyer = 5;
+}
+

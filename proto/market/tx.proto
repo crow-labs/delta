@@ -1,0 +1,81 @@
+syntax = "proto3";
+package crowlabs.delta.market;
+
+import "market/mono_listing.proto";
+import "market/mono_order.proto";
+// this line is used by starport scaffolding # proto/tx/import
+import "cosmos/base/v1beta1/coin.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/crow-labs/delta/x/market/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc CreateMonoListing(MsgCreateMonoListing) returns (MsgCreateMonoListingResponse);
+  rpc UpdateMonoListing(MsgUpdateMonoListing) returns (MsgUpdateMonoListingResponse);
+  rpc DeleteMonoListing(MsgDeleteMonoListing) returns (MsgDeleteMonoListingResponse);
+  rpc CreateMonoOrder(MsgCreateMonoOrder) returns (MsgCreateMonoOrderResponse);
+  rpc UpdateMonoOrder(MsgUpdateMonoOrder) returns (MsgUpdateMonoOrderResponse);
+  rpc DeleteMonoOrder(MsgDeleteMonoOrder) returns (MsgDeleteMonoOrderResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateMonoListing {
+  string seller = 1;
+  string listingId = 2;
+
+  string title = 3;
+  string desc = 4;
+  repeated cosmos.base.v1beta1.Coin price = 5 [(gogoproto.nullable) = false];
+  repeated string orderId = 6;
+  string acceptedOrderId = 7;
+  string status = 8;
+}
+message MsgCreateMonoListingResponse {}
+
+message MsgUpdateMonoListing {
+  string seller = 1;
+  string listingId = 2;
+
+  string title = 3;
+  string desc = 4;
+  repeated cosmos.base.v1beta1.Coin price = 5 [(gogoproto.nullable) = false];
+  repeated string orderId = 6;
+  string acceptedOrderId = 7;
+  string status = 8;
+}
+message MsgUpdateMonoListingResponse {}
+
+message MsgDeleteMonoListing {
+  string seller = 1;
+  string listingId = 2;
+}
+message MsgDeleteMonoListingResponse {}
+
+message MsgCreateMonoOrder {
+  string buyer = 1;
+  string orderId = 2;
+
+  repeated cosmos.base.v1beta1.Coin price = 3 [(gogoproto.nullable) = false];
+  string timeout = 4;
+  string status = 5;
+}
+message MsgCreateMonoOrderResponse {}
+
+message MsgUpdateMonoOrder {
+  string buyer = 1;
+  string orderId = 2;
+
+  repeated cosmos.base.v1beta1.Coin price = 3 [(gogoproto.nullable) = false];
+  string timeout = 4;
+  string status = 5;
+}
+message MsgUpdateMonoOrderResponse {}
+
+message MsgDeleteMonoOrder {
+  string buyer = 1;
+  string orderId = 2;
+}
+message MsgDeleteMonoOrderResponse {}
+
+// this line is used by starport scaffolding # proto/tx/message
