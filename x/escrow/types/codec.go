@@ -29,6 +29,14 @@ func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgCreateVerdict{}, "escrow/CreateVerdict", nil)
 	cdc.RegisterConcrete(&MsgUpdateVerdict{}, "escrow/UpdateVerdict", nil)
 	cdc.RegisterConcrete(&MsgDeleteVerdict{}, "escrow/DeleteVerdict", nil)
+	cdc.RegisterConcrete(&MsgBeginCrow{}, "escrow/BeginCrow", nil)
+	cdc.RegisterConcrete(&MsgJoinCrow{}, "escrow/JoinCrow", nil)
+	cdc.RegisterConcrete(&MsgSellerRaiseDispute{}, "escrow/SellerRaiseDispute", nil)
+	cdc.RegisterConcrete(&MsgBuyerRaiseDispute{}, "escrow/BuyerRaiseDispute", nil)
+	cdc.RegisterConcrete(&MsgSellerDisputeRebuttal{}, "escrow/SellerDisputeRebuttal", nil)
+	cdc.RegisterConcrete(&MsgBuyerDisputeRebuttal{}, "escrow/BuyerDisputeRebuttal", nil)
+	cdc.RegisterConcrete(&MsgVoteOnDispute{}, "escrow/VoteOnDispute", nil)
+	cdc.RegisterConcrete(&MsgReleaseCrow{}, "escrow/ReleaseCrow", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -67,6 +75,30 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgCreateVerdict{},
 		&MsgUpdateVerdict{},
 		&MsgDeleteVerdict{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgBeginCrow{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgJoinCrow{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgSellerRaiseDispute{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgBuyerRaiseDispute{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgSellerDisputeRebuttal{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgBuyerDisputeRebuttal{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgVoteOnDispute{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgReleaseCrow{},
 	)
 	// this line is used by starport scaffolding # 3
 

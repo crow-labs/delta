@@ -80,6 +80,30 @@ func NewHandler(k keeper.Keeper) sdk.Handler {
 		case *types.MsgDeleteVerdict:
 			res, err := msgServer.DeleteVerdict(sdk.WrapSDKContext(ctx), msg)
 			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgBeginCrow:
+			res, err := msgServer.BeginCrow(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgJoinCrow:
+			res, err := msgServer.JoinCrow(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgSellerRaiseDispute:
+			res, err := msgServer.SellerRaiseDispute(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgBuyerRaiseDispute:
+			res, err := msgServer.BuyerRaiseDispute(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgSellerDisputeRebuttal:
+			res, err := msgServer.SellerDisputeRebuttal(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgBuyerDisputeRebuttal:
+			res, err := msgServer.BuyerDisputeRebuttal(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgVoteOnDispute:
+			res, err := msgServer.VoteOnDispute(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
+		case *types.MsgReleaseCrow:
+			res, err := msgServer.ReleaseCrow(sdk.WrapSDKContext(ctx), msg)
+			return sdk.WrapServiceResult(ctx, res, err)
 			// this line is used by starport scaffolding # 1
 		default:
 			errMsg := fmt.Sprintf("unrecognized %s message type: %T", types.ModuleName, msg)

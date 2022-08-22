@@ -67,6 +67,14 @@ export interface EscrowMonoRebutal {
   defendant?: string;
 }
 
+export type EscrowMsgBeginCrowResponse = object;
+
+export type EscrowMsgBuyerDisputeRebuttalResponse = object;
+
+export interface EscrowMsgBuyerRaiseDisputeResponse {
+  disputeId?: string;
+}
+
 export type EscrowMsgCreateBuyerMonoCrowResponse = object;
 
 export type EscrowMsgCreateMonoCrowResponse = object;
@@ -95,6 +103,18 @@ export type EscrowMsgDeleteVerdictResponse = object;
 
 export type EscrowMsgDeleteVoteResponse = object;
 
+export type EscrowMsgJoinCrowResponse = object;
+
+export interface EscrowMsgReleaseCrowResponse {
+  status?: string;
+}
+
+export type EscrowMsgSellerDisputeRebuttalResponse = object;
+
+export interface EscrowMsgSellerRaiseDisputeResponse {
+  disputeId?: string;
+}
+
 export type EscrowMsgUpdateBuyerMonoCrowResponse = object;
 
 export type EscrowMsgUpdateMonoCrowResponse = object;
@@ -108,6 +128,10 @@ export type EscrowMsgUpdateSellerMonoCrowResponse = object;
 export type EscrowMsgUpdateVerdictResponse = object;
 
 export type EscrowMsgUpdateVoteResponse = object;
+
+export interface EscrowMsgVoteOnDisputeResponse {
+  voteId?: string;
+}
 
 /**
  * Params defines the parameters for the module.

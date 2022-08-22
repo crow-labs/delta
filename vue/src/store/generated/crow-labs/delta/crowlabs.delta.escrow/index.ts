@@ -1035,48 +1035,48 @@ export default {
 		},
 		
 		
-		async sendMsgUpdateMonoDispute({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgCreateVerdict({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateMonoDispute(value)
+				const msg = await txClient.msgCreateVerdict(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMonoDispute:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateVerdict:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgUpdateMonoDispute:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgCreateVerdict:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
-		async sendMsgDeleteVerdict({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgUpdateBuyerMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteVerdict(value)
+				const msg = await txClient.msgUpdateBuyerMonoCrow(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteVerdict:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgUpdateBuyerMonoCrow:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgDeleteVerdict:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgUpdateBuyerMonoCrow:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
-		async sendMsgDeleteSellerMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgUpdateVote({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteSellerMonoCrow(value)
+				const msg = await txClient.msgUpdateVote(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteSellerMonoCrow:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgUpdateVote:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgDeleteSellerMonoCrow:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgUpdateVote:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -1095,6 +1095,21 @@ export default {
 				}
 			}
 		},
+		async sendMsgCreateSellerMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgCreateSellerMonoCrow(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCreateSellerMonoCrow:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgCreateSellerMonoCrow:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
 		async sendMsgDeleteMonoDispute({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
@@ -1107,6 +1122,21 @@ export default {
 					throw new Error('TxClient:MsgDeleteMonoDispute:Init Could not initialize signing client. Wallet is required.')
 				}else{
 					throw new Error('TxClient:MsgDeleteMonoDispute:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgDeleteMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgDeleteMonoCrow(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteMonoCrow:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgDeleteMonoCrow:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -1140,18 +1170,48 @@ export default {
 				}
 			}
 		},
-		async sendMsgCreateSellerMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgSellerRaiseDispute({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateSellerMonoCrow(value)
+				const msg = await txClient.msgSellerRaiseDispute(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateSellerMonoCrow:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgSellerRaiseDispute:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgCreateSellerMonoCrow:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgSellerRaiseDispute:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgBeginCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgBeginCrow(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgBeginCrow:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgBeginCrow:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgUpdateMonoDispute({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgUpdateMonoDispute(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateMonoDispute:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgUpdateMonoDispute:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -1170,78 +1230,33 @@ export default {
 				}
 			}
 		},
-		async sendMsgCreateVote({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgDeleteSellerMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateVote(value)
+				const msg = await txClient.msgDeleteSellerMonoCrow(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateVote:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgDeleteSellerMonoCrow:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgCreateVote:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgDeleteSellerMonoCrow:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
-		async sendMsgCreateVerdict({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgBuyerDisputeRebuttal({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateVerdict(value)
+				const msg = await txClient.msgBuyerDisputeRebuttal(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateVerdict:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgBuyerDisputeRebuttal:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgCreateVerdict:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgUpdateMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateMonoCrow(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMonoCrow:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgUpdateMonoCrow:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgUpdateMonoRebutal({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateMonoRebutal(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMonoRebutal:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgUpdateMonoRebutal:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgCreateMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateMonoCrow(value)
-				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
-	gas: "200000" }, memo})
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateMonoCrow:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgCreateMonoCrow:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgBuyerDisputeRebuttal:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -1260,18 +1275,48 @@ export default {
 				}
 			}
 		},
-		async sendMsgCreateMonoDispute({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgUpdateMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateMonoDispute(value)
+				const msg = await txClient.msgUpdateMonoCrow(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateMonoDispute:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgUpdateMonoCrow:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgCreateMonoDispute:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgUpdateMonoCrow:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgJoinCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgJoinCrow(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgJoinCrow:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgJoinCrow:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgCreateMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgCreateMonoCrow(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCreateMonoCrow:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgCreateMonoCrow:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -1290,18 +1335,93 @@ export default {
 				}
 			}
 		},
-		async sendMsgUpdateVote({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgCreateMonoDispute({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateVote(value)
+				const msg = await txClient.msgCreateMonoDispute(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateVote:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateMonoDispute:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgUpdateVote:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgCreateMonoDispute:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgSellerDisputeRebuttal({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgSellerDisputeRebuttal(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgSellerDisputeRebuttal:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgSellerDisputeRebuttal:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgUpdateMonoRebutal({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgUpdateMonoRebutal(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateMonoRebutal:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgUpdateMonoRebutal:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgDeleteVerdict({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgDeleteVerdict(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteVerdict:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgDeleteVerdict:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgReleaseCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgReleaseCrow(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgReleaseCrow:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgReleaseCrow:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgBuyerRaiseDispute({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgBuyerRaiseDispute(value)
+				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
+	gas: "200000" }, memo})
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgBuyerRaiseDispute:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgBuyerRaiseDispute:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -1320,73 +1440,73 @@ export default {
 				}
 			}
 		},
-		async sendMsgUpdateBuyerMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgVoteOnDispute({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateBuyerMonoCrow(value)
+				const msg = await txClient.msgVoteOnDispute(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateBuyerMonoCrow:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgVoteOnDispute:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgUpdateBuyerMonoCrow:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgVoteOnDispute:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
-		async sendMsgDeleteMonoCrow({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgCreateVote({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteMonoCrow(value)
+				const msg = await txClient.msgCreateVote(value)
 				const result = await txClient.signAndBroadcast([msg], {fee: { amount: fee, 
 	gas: "200000" }, memo})
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteMonoCrow:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateVote:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgDeleteMonoCrow:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgCreateVote:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
 		
-		async MsgUpdateMonoDispute({ rootGetters }, { value }) {
+		async MsgCreateVerdict({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateMonoDispute(value)
+				const msg = await txClient.msgCreateVerdict(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMonoDispute:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateVerdict:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgUpdateMonoDispute:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgCreateVerdict:Create Could not create message: ' + e.message)
 				}
 			}
 		},
-		async MsgDeleteVerdict({ rootGetters }, { value }) {
+		async MsgUpdateBuyerMonoCrow({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteVerdict(value)
+				const msg = await txClient.msgUpdateBuyerMonoCrow(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteVerdict:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgUpdateBuyerMonoCrow:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgDeleteVerdict:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgUpdateBuyerMonoCrow:Create Could not create message: ' + e.message)
 				}
 			}
 		},
-		async MsgDeleteSellerMonoCrow({ rootGetters }, { value }) {
+		async MsgUpdateVote({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteSellerMonoCrow(value)
+				const msg = await txClient.msgUpdateVote(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteSellerMonoCrow:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgUpdateVote:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgDeleteSellerMonoCrow:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgUpdateVote:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -1403,6 +1523,19 @@ export default {
 				}
 			}
 		},
+		async MsgCreateSellerMonoCrow({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgCreateSellerMonoCrow(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCreateSellerMonoCrow:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgCreateSellerMonoCrow:Create Could not create message: ' + e.message)
+				}
+			}
+		},
 		async MsgDeleteMonoDispute({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
@@ -1413,6 +1546,19 @@ export default {
 					throw new Error('TxClient:MsgDeleteMonoDispute:Init Could not initialize signing client. Wallet is required.')
 				} else{
 					throw new Error('TxClient:MsgDeleteMonoDispute:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgDeleteMonoCrow({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgDeleteMonoCrow(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteMonoCrow:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgDeleteMonoCrow:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -1442,16 +1588,42 @@ export default {
 				}
 			}
 		},
-		async MsgCreateSellerMonoCrow({ rootGetters }, { value }) {
+		async MsgSellerRaiseDispute({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateSellerMonoCrow(value)
+				const msg = await txClient.msgSellerRaiseDispute(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateSellerMonoCrow:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgSellerRaiseDispute:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgCreateSellerMonoCrow:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgSellerRaiseDispute:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgBeginCrow({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgBeginCrow(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgBeginCrow:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgBeginCrow:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgUpdateMonoDispute({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgUpdateMonoDispute(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateMonoDispute:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgUpdateMonoDispute:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -1468,68 +1640,29 @@ export default {
 				}
 			}
 		},
-		async MsgCreateVote({ rootGetters }, { value }) {
+		async MsgDeleteSellerMonoCrow({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateVote(value)
+				const msg = await txClient.msgDeleteSellerMonoCrow(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateVote:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgDeleteSellerMonoCrow:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgCreateVote:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgDeleteSellerMonoCrow:Create Could not create message: ' + e.message)
 				}
 			}
 		},
-		async MsgCreateVerdict({ rootGetters }, { value }) {
+		async MsgBuyerDisputeRebuttal({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateVerdict(value)
+				const msg = await txClient.msgBuyerDisputeRebuttal(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateVerdict:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgBuyerDisputeRebuttal:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgCreateVerdict:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgUpdateMonoCrow({ rootGetters }, { value }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateMonoCrow(value)
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMonoCrow:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgUpdateMonoCrow:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgUpdateMonoRebutal({ rootGetters }, { value }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateMonoRebutal(value)
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMonoRebutal:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgUpdateMonoRebutal:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgCreateMonoCrow({ rootGetters }, { value }) {
-			try {
-				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateMonoCrow(value)
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateMonoCrow:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgCreateMonoCrow:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgBuyerDisputeRebuttal:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -1546,16 +1679,42 @@ export default {
 				}
 			}
 		},
-		async MsgCreateMonoDispute({ rootGetters }, { value }) {
+		async MsgUpdateMonoCrow({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgCreateMonoDispute(value)
+				const msg = await txClient.msgUpdateMonoCrow(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateMonoDispute:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgUpdateMonoCrow:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgCreateMonoDispute:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgUpdateMonoCrow:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgJoinCrow({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgJoinCrow(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgJoinCrow:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgJoinCrow:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgCreateMonoCrow({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgCreateMonoCrow(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCreateMonoCrow:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgCreateMonoCrow:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -1572,16 +1731,81 @@ export default {
 				}
 			}
 		},
-		async MsgUpdateVote({ rootGetters }, { value }) {
+		async MsgCreateMonoDispute({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateVote(value)
+				const msg = await txClient.msgCreateMonoDispute(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateVote:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateMonoDispute:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgUpdateVote:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgCreateMonoDispute:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgSellerDisputeRebuttal({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgSellerDisputeRebuttal(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgSellerDisputeRebuttal:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgSellerDisputeRebuttal:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgUpdateMonoRebutal({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgUpdateMonoRebutal(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateMonoRebutal:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgUpdateMonoRebutal:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgDeleteVerdict({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgDeleteVerdict(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteVerdict:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgDeleteVerdict:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgReleaseCrow({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgReleaseCrow(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgReleaseCrow:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgReleaseCrow:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgBuyerRaiseDispute({ rootGetters }, { value }) {
+			try {
+				const txClient=await initTxClient(rootGetters)
+				const msg = await txClient.msgBuyerRaiseDispute(value)
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgBuyerRaiseDispute:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgBuyerRaiseDispute:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -1598,29 +1822,29 @@ export default {
 				}
 			}
 		},
-		async MsgUpdateBuyerMonoCrow({ rootGetters }, { value }) {
+		async MsgVoteOnDispute({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgUpdateBuyerMonoCrow(value)
+				const msg = await txClient.msgVoteOnDispute(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateBuyerMonoCrow:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgVoteOnDispute:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgUpdateBuyerMonoCrow:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgVoteOnDispute:Create Could not create message: ' + e.message)
 				}
 			}
 		},
-		async MsgDeleteMonoCrow({ rootGetters }, { value }) {
+		async MsgCreateVote({ rootGetters }, { value }) {
 			try {
 				const txClient=await initTxClient(rootGetters)
-				const msg = await txClient.msgDeleteMonoCrow(value)
+				const msg = await txClient.msgCreateVote(value)
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteMonoCrow:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateVote:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgDeleteMonoCrow:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgCreateVote:Create Could not create message: ' + e.message)
 				}
 			}
 		},

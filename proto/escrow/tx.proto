@@ -8,9 +8,9 @@ import "escrow/mono_dispute.proto";
 import "escrow/mono_rebutal.proto";
 import "escrow/verdict.proto";
 // this line is used by starport scaffolding # proto/tx/import
-import "escrow/vote.proto";
 import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
+import "escrow/vote.proto";
 
 option go_package = "github.com/crow-labs/delta/x/escrow/types";
 
@@ -37,6 +37,14 @@ service Msg {
   rpc CreateVerdict(MsgCreateVerdict) returns (MsgCreateVerdictResponse);
   rpc UpdateVerdict(MsgUpdateVerdict) returns (MsgUpdateVerdictResponse);
   rpc DeleteVerdict(MsgDeleteVerdict) returns (MsgDeleteVerdictResponse);
+  rpc BeginCrow(MsgBeginCrow) returns (MsgBeginCrowResponse);
+  rpc JoinCrow(MsgJoinCrow) returns (MsgJoinCrowResponse);
+  rpc SellerRaiseDispute(MsgSellerRaiseDispute) returns (MsgSellerRaiseDisputeResponse);
+  rpc BuyerRaiseDispute(MsgBuyerRaiseDispute) returns (MsgBuyerRaiseDisputeResponse);
+  rpc SellerDisputeRebuttal(MsgSellerDisputeRebuttal) returns (MsgSellerDisputeRebuttalResponse);
+  rpc BuyerDisputeRebuttal(MsgBuyerDisputeRebuttal) returns (MsgBuyerDisputeRebuttalResponse);
+  rpc VoteOnDispute(MsgVoteOnDispute) returns (MsgVoteOnDisputeResponse);
+  rpc ReleaseCrow(MsgReleaseCrow) returns (MsgReleaseCrowResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -227,5 +235,92 @@ message MsgDeleteVerdict {
   string verdictId = 2;
 }
 message MsgDeleteVerdictResponse {}
+
+message MsgBeginCrow {
+  string seller = 1;
+  string crowId = 2;
+  repeated cosmos.base.v1beta1.Coin collateral = 3 [(gogoproto.nullable) = false];
+}
+
+message MsgBeginCrowResponse {
+}
+
+message MsgJoinCrow {
+  string buyer = 1;
+  string crowId = 2;
+  repeated cosmos.base.v1beta1.Coin deposit = 3 [(gogoproto.nullable) = false];
+  repeated cosmos.base.v1beta1.Coin collateral = 4 [(gogoproto.nullable) = false];
+}
+
+message MsgJoinCrowResponse {
+}
+
+message MsgSellerRaiseDispute {
+  string seller = 1;
+  string crowId = 2;
+  string title = 3;
+  string desc = 4;
+  string evidence = 5;
+}
+
+message MsgSellerRaiseDisputeResponse {
+  string disputeId = 1;
+}
+
+message MsgBuyerRaiseDispute {
+  string buyer = 1;
+  string crowId = 2;
+  string title = 3;
+  string desc = 4;
+  string evidence = 5;
+}
+
+message MsgBuyerRaiseDisputeResponse {
+  string disputeId = 1;
+}
+
+message MsgSellerDisputeRebuttal {
+  string seller = 1;
+  string crowId = 2;
+  string desc = 3;
+  string evidence = 4;
+}
+
+message MsgSellerDisputeRebuttalResponse {
+}
+
+message MsgBuyerDisputeRebuttal {
+  string buyer = 1;
+  string crowId = 2;
+  string desc = 3;
+  string evidence = 4;
+}
+
+message MsgBuyerDisputeRebuttalResponse {
+}
+
+message MsgVoteOnDispute {
+  string voter = 1;
+  string disputeId = 2;
+  bool buyerGuilty = 3;
+  bool sellerGuilty = 4;
+  repeated cosmos.base.v1beta1.Coin refundToBuyer = 5 [(gogoproto.nullable) = false];
+  repeated cosmos.base.v1beta1.Coin sendToSeller = 6 [(gogoproto.nullable) = false];
+  string buyerPunishment = 7;
+  string sellerPunishment = 8;
+}
+
+message MsgVoteOnDisputeResponse {
+  string voteId = 1;
+}
+
+message MsgReleaseCrow {
+  string buyer = 1;
+  string crowId = 2;
+}
+
+message MsgReleaseCrowResponse {
+  string status = 1;
+}
 
 // this line is used by starport scaffolding # proto/tx/message
